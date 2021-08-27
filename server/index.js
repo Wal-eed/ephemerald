@@ -31,7 +31,7 @@ class User {
 		this.socket.emit("myEventName"/*, a, b, ...*/);
 
 		// send data to everyone
-		io.emit("myEventName", /*, a, b, ...*/);
+		io.emit("myEventName"/*, a, b, ...*/);
 
 		// more ways to send stuff (rooms, broadcasts, etc):
 		// https://socket.io/docs/v3/emit-cheatsheet/index.html
