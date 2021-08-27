@@ -6,16 +6,22 @@ An ephemeral social networking app to bring the best of online events to in-pers
 
 From the project directory:
 
-```cd client; npm install; cd ../server; npm install; cd ..```
+```
+cd client; npm install; cd ../server; npm install; cd ..
+```
 
 ## Running
 
 To run the client:
 
-```cd client; npm run start```
+```
+cd client; npm run start
+```
 
 To run the server:
 
-```cd server; npm run start```
+```
+cd server; npm run start
+```
 
 Each will listen for changes to the code and automatically reload.
