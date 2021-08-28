@@ -14,8 +14,22 @@ interface Props {
 }
 
 const Map: React.FC<Props> = ({me, events}) => {
+	const mapRef = React.useRef<any>();
+
+	React.useEffect(() => {
+		setTimeout(() => {
+			mapRef?.current?.invalidateSize();
+		}, 1000);
+	}, []);
+
 	return (
-		<MapContainer center={[-33.917, 151.231]} zoom={18}>
+		<MapContainer
+			center={[-33.917, 151.231]}
+			zoom={18}
+			whenCreated={(mapInstance) => {
+				mapRef.current = mapInstance;
+			}}
+		>
 			<TileLayer
 				url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
 				attribution={attribution}
@@ -29,7 +43,7 @@ const Map: React.FC<Props> = ({me, events}) => {
 
 			{events.map((event) => (
 				<Circle
-					key={event.name}
+					key={JSON.stringify(event)}
 					center={event.location}
 					radius={event.radius}
 					pathOptions={{color: "#1db954"}}

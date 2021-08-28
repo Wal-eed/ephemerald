@@ -93,24 +93,24 @@ const Home = (props: Props) => {
                 }}
               >
                 <Map
-                  me={[-33.918, 151.231]}
+                  me={[-33.9177, 151.2302]}
                   events={[
                     {
                       name: "1511 Lecture Group Chat",
                       attendance: 10,
                       location: [-33.918, 151.231],
                       radius: 40,
-                      distance: 0.3,
+                      distance: 0.3
                     },
                     {
                       name: "Elton John Concert",
                       attendance: 119,
                       location: [-33.917, 151.231],
                       radius: 60,
-                      distance: 0.6,
-                    },
+                      distance: 0.6
+                    }
                   ]}
-                />
+						  />
               </div>
             </TabPanel>
           </TabPanels>
