@@ -19,6 +19,8 @@ import SplashScreen from "src/components/SplashScreen/SplashScreen";
 interface Props {}
 
 const Home = (props: Props) => {
+  const [mapVisible, setMapVisible] = React.useState<boolean>(false);
+
   const events: Event[] = [
     {
       name: "1511 Lecture Group Chat",
@@ -57,6 +59,7 @@ const Home = (props: Props) => {
           isFitted
         //   variant="enclosed"
           variant="soft-rounded" colorScheme="green"
+          onChange={(index) => setMapVisible(index === 1)}
           style={{
             height: "calc(100% - 70px)",
           }}
@@ -110,7 +113,8 @@ const Home = (props: Props) => {
                       distance: 0.6
                     }
                   ]}
-						  />
+                  visible={mapVisible}
+						    />
               </div>
             </TabPanel>
           </TabPanels>

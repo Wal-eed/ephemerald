@@ -11,16 +11,15 @@ const attribution = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">
 interface Props {
 	me: Location;
 	events: Event[];
+	visible: boolean;
 }
 
-const Map: React.FC<Props> = ({me, events}) => {
+const Map: React.FC<Props> = ({me, events, visible}) => {
 	const mapRef = React.useRef<any>();
 
 	React.useEffect(() => {
-		setTimeout(() => {
-			mapRef?.current?.invalidateSize();
-		}, 1000);
-	}, []);
+		mapRef?.current?.invalidateSize();
+	}, [visible]);
 
 	return (
 		<MapContainer
