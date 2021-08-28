@@ -14,7 +14,7 @@ const EventList = ({events}) => {
             <SortList ChatList={DisplayedEvents} setChatList={setDisplayedEvents}/>
             {events.map((event) => (
             <>
-                <Card borderRadius="20px" pulse={event.numPeople >= 100}>
+                <Card borderRadius="20px" pulse={event.attendance >= 100}>
                 <Text>{event.name}</Text>
                 <Text>{event.distance} km away</Text>
                 <Text>{event.attendance} people</Text>

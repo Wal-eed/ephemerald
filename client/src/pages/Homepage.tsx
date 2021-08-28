@@ -40,22 +40,23 @@ const Home = (props: Props) => {
     <>
       <SplashScreen />
       <ChatHeader />
-      {/* <div
+      <div
         style={{
           borderTop: "1px solid #F2F2F2",
-          borderRadius: "20px",
+          borderRadius: "25px",
           // padding: 20,
           width: "100%",
           position: "relative",
-          top: "-13px",
+          top: "-21px",
           backgroundColor: "white",
           height: "90vh",
           zIndex: 10,
         }}
-      > */}
+      >
         <Tabs
           isFitted
-          variant="enclosed"
+        //   variant="enclosed"
+          variant="soft-rounded" colorScheme="green"
           style={{
             height: "calc(100% - 70px)",
           }}
@@ -114,7 +115,7 @@ const Home = (props: Props) => {
             </TabPanel>
           </TabPanels>
         </Tabs>
-      {/* </div> */}
+      </div>
     </>
   );
 };
