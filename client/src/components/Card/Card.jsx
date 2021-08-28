@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/layout";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import styles from "./Card.module.scss";
 
-const Card = ({ ellipses = true, children }) => {
+const Card = ({ ellipses = false, children }) => {
     return (
         <Box
             style={{
