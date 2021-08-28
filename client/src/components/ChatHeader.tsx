@@ -5,6 +5,7 @@ import {
   CloseButton,
   Flex,
   Link,
+  Text,
   useColorModeValue,
   useDisclosure,
   VStack,
@@ -68,9 +69,11 @@ export default function WfWf(props) {
           mx="auto"
           style={{ position: "relative", top: "-9px" }}
         >
-
-          <Link display="flex" alignItems="center" href="/">
-            <img style={{width: "40px"}} src={logo} />
+          <Link display="flex" alignItems="center" href="/home">
+            <img style={{ width: "40px" }} src={logo} />
+            <Text style={{ color: "white", fontWeight: "bold" }}>
+              EPHEMERALD
+            </Text>
           </Link>
           <Avatar
             name="Dan Abrahmov"
