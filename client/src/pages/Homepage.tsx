@@ -137,7 +137,7 @@ const Home = ({ showSplash, selectedTab = 0 }) => {
               <div
                 style={{
                   width: "100%",
-                  height: "calc(100vh - 70px - 50px)",
+                  height: "calc(100vh - 60px - 50px)",
                 }}
               >
                 <Map
