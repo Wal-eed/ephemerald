@@ -1,12 +1,10 @@
-import "./App.css";
-import io from "socket.io-client";
+import { ChakraProvider } from "@chakra-ui/react";
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link
+	BrowserRouter as Router, Route, Switch
 } from "react-router-dom";
-import { Homepage, Chat, Messages, Memorabilia, People, QA, Map } from './pages';
+import io from "socket.io-client";
+import "./App.css";
+import { Chat, Homepage, Memorabilia, Messages, People, QA, Map } from './pages';
 
 // connect to the server
 const socket = io(`http://${window.location.hostname}:8080`);
@@ -31,34 +29,35 @@ socket.emit("myEventName"/*, a, b, ...*/);
 
 function App() {
 	return (
-		<div className="App">
+			<ChakraProvider>
 
-			<Router>
-				<Switch>
-					<Route path="/" exact>
-						<Homepage />
-					</Route>
-					<Route path="/chat">
-						<Chat />
-					</Route>
-					<Route path="/memorabilia">
-						<Memorabilia />
-					</Route>
-					<Route path="/messages">
-						<Messages />
-					</Route>
-					<Route path="/people">
-						<People />
-					</Route>
-					<Route path="/qa">
-						<QA />
-					</Route>
-					<Route path="/map">
-						<Map />
-					</Route>
-				</Switch>
-			</Router>
-		</div>
+				<Router>
+					<Switch>
+						<Route path="/" exact>
+							<Homepage />
+						</Route>
+						<Route path="/chat">
+							<Chat />
+						</Route>
+						<Route path="/memorabilia">
+							<Memorabilia />
+						</Route>
+						<Route path="/messages">
+							<Messages />
+						</Route>
+						<Route path="/people">
+							<People />
+						</Route>
+						<Route path="/qa">
+							<QA />
+						</Route>
+						<Route path="/map">
+							<Map />
+						</Route>
+					</Switch>
+				</Router>
+			</ChakraProvider>
+
 	);
 }
 
