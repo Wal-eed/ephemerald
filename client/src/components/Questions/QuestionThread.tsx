@@ -3,30 +3,14 @@ import { Avatar } from "@chakra-ui/avatar";
 import React from "react";
 import jas from "../../assets/jas.png";
 import elon from "../../assets/elon.png";
+import Card from "src/components/Card/Card";
 
 interface Props {}
 
 const QuestionThread: React.FC<Props> = () => {
     return (
-        <Box
-            style={{
-                borderRadius: "5px",
-                boxShadow:
-                    "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
-                padding: 20,
-            }}
-        >
-            <Avatar
-                name="AVATAR"
-                size="lg"
-                src={jas}
-                // style={{
-                //     position: "absolute",
-                //     left: "4%",
-                //     top: "50%",
-                //     transform: "translateY(-50%)",
-                // }}
-            />
+        <Card>
+            <Avatar name="AVATAR" size="lg" src={jas} />
             <Box
                 style={{
                     marginTop: 14,
@@ -69,7 +53,7 @@ const QuestionThread: React.FC<Props> = () => {
                     A: yes
                 </Box>
             </Box>
-        </Box>
+        </Card>
     );
 };
 
