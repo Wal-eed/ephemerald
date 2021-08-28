@@ -16,9 +16,7 @@ import ChatHeader from "../components/ChatHeader";
 import Map from "./Map";
 import SplashScreen from "src/components/SplashScreen/SplashScreen";
 
-interface Props { }
-
-const Home = (props: Props) => {
+const Home = ({ showSplash }) => {
   const [mapVisible, setMapVisible] = React.useState<boolean>(false);
 
   const events: Event[] = [
@@ -29,7 +27,7 @@ const Home = (props: Props) => {
       radius: 5,
       distance: 0.3,
       tags: ["Study", "CSE"],
-      colour: "#3E00FF"
+      colour: "#3E00FF",
     },
     {
       name: "Elton John Concert",
@@ -38,7 +36,7 @@ const Home = (props: Props) => {
       radius: 7,
       distance: 0.6,
       tags: ["Concert", "Music"],
-      colour: "#68d391"
+      colour: "#68d391",
     },
     {
       name: "Dan's Pub - Happy Hour",
@@ -47,7 +45,7 @@ const Home = (props: Props) => {
       radius: 7,
       distance: 0.8,
       tags: ["Pub", "Drinks", "Happy Hour"],
-      colour: "#FF2626"
+      colour: "#FF2626",
     },
     {
       name: "Friendly Soccer",
@@ -56,13 +54,13 @@ const Home = (props: Props) => {
       radius: 7,
       distance: 1.0,
       tags: ["Soccer"],
-      colour: "#B980F0"
+      colour: "#B980F0",
     },
   ];
 
   return (
     <>
-      <SplashScreen />
+      {showSplash && <SplashScreen />}
       <ChatHeader />
       <div
         style={{
@@ -80,7 +78,8 @@ const Home = (props: Props) => {
         <Tabs
           isFitted
           //   variant="enclosed"
-          variant="soft-rounded" colorScheme="green"
+          variant="soft-rounded"
+          colorScheme="green"
           onChange={(index) => setMapVisible(index === 1)}
           style={{
             height: "calc(100% - 70px)",
@@ -100,6 +99,10 @@ const Home = (props: Props) => {
             <Tab>
               <Icon as={FaMapMarked} style={{ marginRight: "0.5rem" }} />
               <Text>Map</Text>
+            </Tab>
+            <Tab>
+              <Icon as={FaMapMarked} style={{ marginRight: "0.5rem" }} />
+              <Text>Messages</Text>
             </Tab>
           </TabList>
           <TabPanels>
@@ -127,7 +130,7 @@ const Home = (props: Props) => {
                       radius: 40,
                       distance: 0.3,
                       tags: ["Study, CSE"],
-                      colour: "#3E00FF"
+                      colour: "#3E00FF",
                     },
                     {
                       name: "Elton John Concert",
@@ -136,13 +139,14 @@ const Home = (props: Props) => {
                       radius: 60,
                       distance: 0.6,
                       tags: ["Concert", "Music"],
-                      colour: "#68d391"
+                      colour: "#68d391",
                     },
                   ]}
                   visible={mapVisible}
                 />
               </div>
             </TabPanel>
+            <TabPanel>MESSAGES HERE</TabPanel>
           </TabPanels>
         </Tabs>
       </div>
