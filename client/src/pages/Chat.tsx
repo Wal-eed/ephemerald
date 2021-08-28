@@ -13,6 +13,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Card from "src/components/Card/Card";
+import { Icon } from "@chakra-ui/react";
+import { FaMapMarked } from "react-icons/fa";
 
 interface Props {}
 
@@ -21,14 +23,6 @@ interface ChatInterface {
   distance: Number;
   numPeople: Number;
 }
-
-// const Card: React.FC<Props> = ({ children }) => {
-//   return (
-//     <Box marginY="5" border="1px" w="100%" p={4} borderRadius={20}>
-//       {children}
-//     </Box>
-//   );
-// };
 
 const Chat = (props: Props) => {
   const ChatList: ChatInterface[] = [
@@ -46,27 +40,36 @@ const Chat = (props: Props) => {
 
   return (
     <>
-      <ChatHeader></ChatHeader>
+      <ChatHeader />
       <Tabs isFitted variant="enclosed">
         <TabList mb="1em">
-          <Tab>Events</Tab>
-          <Tab>Map</Tab>
-          <Tab>Directs</Tab>
+          <Tab>
+            <Icon as={FaMapMarked} />
+            {" Events"}
+          </Tab>
+          <Tab>
+            <Text>
+              <Icon as={FaMapMarked} />
+              {" Map"}
+            </Text>
+          </Tab>
+          <Tab>
+            <Icon as={FaMapMarked} />
+            {" Directs"}
+          </Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Container>
-              {ChatList.map((chat) => (
-                <>
-                  <Card>
-                    <Text>{chat.heading}</Text>
-                    <Text>{chat.distance} km away</Text>
-                    <Text>{chat.numPeople} people</Text>
-                  </Card>
-                  <br />
-                </>
-              ))}
-            </Container>
+            {ChatList.map((chat) => (
+              <>
+                <Card>
+                  <Text>{chat.heading}</Text>
+                  <Text>{chat.distance} km away</Text>
+                  <Text>{chat.numPeople} people</Text>
+                </Card>
+                <br />
+              </>
+            ))}
           </TabPanel>
           <TabPanel>
             <p>Map</p>
