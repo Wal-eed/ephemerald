@@ -28,7 +28,7 @@ const Home = ({ showSplash, selectedTab = 0 }) => {
       name: "Climate Change Conference",
       attendance: 72,
       location: [-33.917, 151.230],
-      radius: 70,
+      radius: 60,
       distance: 0.1,
       tags: ["Academic", "Environmental", "Networking"],
       colour: "#68d391",
@@ -43,7 +43,7 @@ const Home = ({ showSplash, selectedTab = 0 }) => {
       name: "SYNCS BBQ",
       attendance: 10,
       location: [-33.918, 151.231],
-      radius: 50,
+      radius: 30,
       distance: 0.3,
       tags: ["CSE", "Fun", "Study"],
       colour: "#68d391",
@@ -59,7 +59,7 @@ const Home = ({ showSplash, selectedTab = 0 }) => {
       name: "Elton John Concert",
       attendance: 119,
       location: [-33.916, 151.231],
-      radius: 70,
+      radius: 80,
       distance: 0.6,
       tags: ["Concert", "Music"],
       colour: "#68d391",
@@ -69,7 +69,7 @@ const Home = ({ showSplash, selectedTab = 0 }) => {
       name: "Dan's Pub - Happy Hour",
       attendance: 47,
       location: [-33.917, 151.232],
-      radius: 70,
+      radius: 47,
       distance: 0.8,
       tags: ["Pub", "Drinks", "Happy Hour"],
       colour: "#68d391",
@@ -142,28 +142,7 @@ const Home = ({ showSplash, selectedTab = 0 }) => {
               >
                 <Map
                   me={[-33.9177, 151.2302]}
-                  events={[
-                    {
-                      name: "1511 Lecture Group Chat",
-                      attendance: 10,
-                      location: [-33.918, 151.231],
-                      radius: 40,
-                      distance: 0.3,
-                      tags: ["Study, CSE"],
-                      colour: "#68d391",
-                      attendees: ["Adam Smith"],
-                    },
-                    {
-                      name: "Elton John Concert",
-                      attendance: 119,
-                      location: [-33.917, 151.231],
-                      radius: 60,
-                      distance: 0.6,
-                      tags: ["Concert", "Music"],
-                      colour: "#68d391",
-                      attendees: ["Ross Lopez"],
-                    },
-                  ]}
+                  events={events}
                   visible={mapVisible}
                 />
               </div>

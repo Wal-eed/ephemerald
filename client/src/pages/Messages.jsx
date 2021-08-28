@@ -116,7 +116,7 @@ const Messages: React.FC<IProps> = () => {
           <HStack
             style={{
               background:
-                activeChannel === channel.name ? "#2bc253" : "#dddddd",
+                activeChannel === channel.name ? "#68d391" : "#dddddd",
               color: activeChannel === channel.name && "white",
               transform: activeChannel === channel.name && "scale(1.1)",
               transition: "0.25s all ease-in-out",
