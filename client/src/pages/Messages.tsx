@@ -1,13 +1,4 @@
-import {
-  Divider,
-  Flex,
-  HStack,
-  Tag,
-  VStack,
-  Text,
-  Box,
-  Button,
-} from "@chakra-ui/react";
+import { Divider, Flex, HStack, Tag, VStack, Button } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Message } from "src/components/Message";
 import MessageInput from "src/components/MessageInput";
@@ -47,8 +38,14 @@ const Messages: React.FC<IProps> = () => {
         })}
       </HStack>
       <Divider />
-      <Flex h="100%" flexDir="column" justifyContent="space-between">
-        <VStack>
+      <Flex
+        w="100%"
+        h="100%"
+        flexDir="column"
+        justifyContent="space-between"
+        overflowY="hidden"
+      >
+        <VStack w="100%" alignItems="start" overflowY="auto">
           {messages
             ? messages.map((msg) => {
                 return (
