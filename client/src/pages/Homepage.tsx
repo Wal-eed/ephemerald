@@ -19,6 +19,8 @@ import SplashScreen from "src/components/SplashScreen/SplashScreen";
 interface Props {}
 
 const Home = (props: Props) => {
+  const [mapVisible, setMapVisible] = React.useState<boolean>(false);
+
   const events: Event[] = [
     {
       name: "1511 Lecture Group Chat",
@@ -57,6 +59,7 @@ const Home = (props: Props) => {
           isFitted
         //   variant="enclosed"
           variant="soft-rounded" colorScheme="green"
+          onChange={(index) => setMapVisible(index === 1)}
           style={{
             height: "calc(100% - 70px)",
           }}
@@ -93,24 +96,25 @@ const Home = (props: Props) => {
                 }}
               >
                 <Map
-                  me={[-33.918, 151.231]}
+                  me={[-33.9177, 151.2302]}
                   events={[
                     {
                       name: "1511 Lecture Group Chat",
                       attendance: 10,
                       location: [-33.918, 151.231],
                       radius: 40,
-                      distance: 0.3,
+                      distance: 0.3
                     },
                     {
                       name: "Elton John Concert",
                       attendance: 119,
                       location: [-33.917, 151.231],
                       radius: 60,
-                      distance: 0.6,
-                    },
+                      distance: 0.6
+                    }
                   ]}
-                />
+                  visible={mapVisible}
+						    />
               </div>
             </TabPanel>
           </TabPanels>
