@@ -4,9 +4,13 @@ import {
 } from "react-router-dom";
 import io from "socket.io-client";
 import "./App.css";
+<<<<<<< HEAD
 import { Chat, Homepage, Memorabilia, Messages, People, QA, Poll } from './pages';
 import logo from 'src/assets/logo.png';
 import { Helmet } from "react-helmet";
+=======
+import { Homepage, Memorabilia, Messages, People, QA, Poll, Map } from './pages';
+>>>>>>> origin/main
 
 // connect to the server
 const socket = io(`http://${window.location.hostname}:8080`);
@@ -41,9 +45,6 @@ function App() {
 					<Route path="/" exact>
 						<Homepage />
 					</Route>
-					<Route path="/chat">
-						<Chat />
-					</Route>
 					<Route path="/memorabilia">
 						<Memorabilia />
 					</Route>
@@ -59,10 +60,30 @@ function App() {
 					<Route path="/poll">
 						<Poll />
 					</Route>
+					<Route path="/map">
+						<Map
+							me={[-33.918, 151.231]}
+							events={[
+								{
+									name: "1511 Lecture Group Chat",
+									attendance: 10,
+									location: [-33.918, 151.231],
+									radius: 40,
+									distance: 0.3
+								},
+								{
+									name: "Elton John Concert",
+									attendance: 119,
+									location: [-33.917, 151.231],
+									radius: 60,
+									distance: 0.6
+								}
+							]}
+						/>
+					</Route>
 				</Switch>
 			</Router>
 		</ChakraProvider>
-
 	);
 }
 

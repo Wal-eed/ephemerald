@@ -8,38 +8,43 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FaCommentAlt, FaMapMarked } from "react-icons/fa";
-import Chat from "src/components/Chat";
+import EventList from "src/components/EventList";
+import { Event } from "src/interfaces/Event";
 import ChatHeader from "../components/ChatHeader";
+import Map from "./Map";
 import SplashScreen from 'src/components/SplashScreen/SplashScreen';
 
 interface Props {}
 
-interface ChatInterface {
-  heading: string;
-  distance: Number;
-  numPeople: Number;
-}
-
 const Home = (props: Props) => {
-  const ChatList: ChatInterface[] = [
+  const events: Event[] = [
     {
-      heading: "1511 Lecture Group Chat",
-      distance: 0.3,
-      numPeople: 10,
+      name: "1511 Lecture Group Chat",
+      attendance: 10,
+      location: [-33.918, 151.231],
+      radius: 5,
+      distance: 0.3
     },
     {
-      heading: "Elton John Concert",
-      distance: 0.6,
-      numPeople: 119,
-    },
+      name: "Elton John Concert",
+      attendance: 119,
+      location: [-33.917, 151.231],
+      radius: 7,
+      distance: 0.6
+    }
   ];
 
   return (
     <>
       <SplashScreen />
       <ChatHeader />
-      <Tabs isFitted variant="enclosed">
-        <TabList mb="1em">
+      <Tabs isFitted variant="enclosed" style={{
+        height: "calc(100% - 70px)"
+      }}>
+        <TabList mb="1em" style={{
+          marginBottom: 0,
+          height: "50px"
+        }}>
           <Tab>
             <Icon as={FaCommentAlt} style={{ marginRight: "0.5rem" }} />
             <Text>Events</Text>
@@ -51,10 +56,35 @@ const Home = (props: Props) => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Chat ChatList={ChatList}/>
+            <EventList events={events}/>
           </TabPanel>
-          <TabPanel>
-            <p>Map</p>
+          <TabPanel style={{
+            padding: 0
+          }}>
+            <div style={{
+              width: "100%",
+              height: "calc(100vh - 70px - 50px)"
+            }}>
+              <Map
+                me={[-33.918, 151.231]}
+                events={[
+                  {
+                    name: "1511 Lecture Group Chat",
+                    attendance: 10,
+                    location: [-33.918, 151.231],
+                    radius: 40,
+                    distance: 0.3
+                  },
+                  {
+                    name: "Elton John Concert",
+                    attendance: 119,
+                    location: [-33.917, 151.231],
+                    radius: 60,
+                    distance: 0.6
+                  }
+                ]}
+						  />
+            </div>
           </TabPanel>
         </TabPanels>
       </Tabs>
