@@ -50,15 +50,21 @@ export default function WfWf(props) {
 
   return (
     <React.Fragment>
+{/* <<<<<<< HEAD */}
       <chakra.header
-        h="full"
+        // h="full"
+        h="70px"
         bg={"green.300"}
         w="full"
         px={{ base: 2, sm: 4 }}
         py={4}
         zIndex={-1}
       >
-        <Flex alignItems="center" justifyContent="space-between" mx="auto">
+        <Flex h="100%" alignItems="center" justifyContent="space-between" mx="auto">
+{/* =======
+      <chakra.header h="70px" bg={bg} w="full" px={{ base: 2, sm: 4 }} py={4}>
+        <Flex h="100%" alignItems="center" justifyContent="space-between" mx="auto">
+>>>>>>> main */}
           <Link display="flex" alignItems="center" href="/">
             {/* <Logo /> */}
             <p>Title</p>

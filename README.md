@@ -15,13 +15,13 @@ cd client && npm install && cd ../server && npm install && cd ..
 To run the client:
 
 ```
-cd client && npm run start
+cd client && npm start
 ```
 
 To run the server:
 
 ```
-cd server && npm run start
+cd server && npm start
 ```
 
 Each will listen for changes to the code and automatically reload.
