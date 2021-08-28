@@ -19,11 +19,12 @@ const QuestionResponse: React.FC<Props> = ({ response }) => {
                 padding: 14,
                 borderRadius: 10,
                 position: "relative",
+                marginTop: 20,
             }}
         >
             <HStack>
                 {/* Responder profile */}
-                <Box style={{ marginLeft: 10, marginRight: 10 }}>
+                <Box style={{ marginLeft: 10, marginRight: 10, width: "80px" }}>
                     <Avatar
                         name="Avatar"
                         src={response.avatar}
