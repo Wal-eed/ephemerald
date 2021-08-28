@@ -12,6 +12,7 @@ import EventList from "src/components/EventList";
 import { Event } from "src/interfaces/Event";
 import ChatHeader from "../components/ChatHeader";
 import Map from "./Map";
+import SplashScreen from 'src/components/SplashScreen/SplashScreen';
 
 interface Props {}
 
@@ -35,6 +36,7 @@ const Home = (props: Props) => {
 
   return (
     <>
+      <SplashScreen />
       <ChatHeader />
       <Tabs isFitted variant="enclosed" style={{
         height: "calc(100% - 70px)"
