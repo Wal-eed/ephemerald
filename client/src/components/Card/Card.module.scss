@@ -5,3 +5,20 @@
         top: 14px;
     }
 }
+
+.pulse {
+  border: 5px solid rgb(104, 211, 145);
+  animation: pulse-animation 4s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    border-color:  rgba(104, 211, 145, 1);
+  }
+  50% {
+    border-color:  rgba(104, 211, 145, 0.1);
+  }
+  100% {
+    border-color:  rgba(104, 211, 145, 1);
+  }
+}

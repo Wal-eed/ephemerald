@@ -3,11 +3,14 @@ import React, { useState } from "react";
 
 interface Props {}
 
-export const SortList = (props: Props) => {
+export const SortList = ({ ChatList, setChatList }) => {
   const [selected, setSelected] = useState("near me");
 
   const change_select = (event) => {
     setSelected(event.target.value);
+    setChatList(ChatList.sort(
+      (first, second) => first[event.target.value] >= second[event.target.value]
+    ));
   };
 
   return (

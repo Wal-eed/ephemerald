@@ -13,6 +13,7 @@ import React from "react";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
 import DarkModeButton from "./DarkModeButton";
+import logo from "src/assets/logo.png";
 
 export default function WfWf(props) {
   const bg = useColorModeValue("white", "gray.800");
@@ -33,12 +34,12 @@ export default function WfWf(props) {
       spacing={3}
       rounded="sm"
       shadow="sm"
+      zIndex={12}
     >
-      <CloseButton
-        aria-label="Close menu"
-        justifySelf="self-start"
-        onClick={profileNav.onClose}
-      />
+      <Button w="full" variant="ghost" onClick={profileNav.onClose}>
+        <CloseButton aria-label="Close menu" justifySelf="self-start" />
+      </Button>
+
       <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
         Map
       </Button>
@@ -50,16 +51,31 @@ export default function WfWf(props) {
 
   return (
     <React.Fragment>
-      <chakra.header h="70px" bg={bg} w="full" px={{ base: 2, sm: 4 }} py={4}>
-        <Flex h="100%" alignItems="center" justifyContent="space-between" mx="auto">
+      <chakra.header
+        // h="full"
+        h="80px"
+        p="100px"
+        bg={"green.300"}
+        w="full"
+        px={{ base: 2, sm: 4 }}
+        py={4}
+        zIndex={-1}
+      >
+        <Flex
+          h="100%"
+          alignItems="center"
+          justifyContent="space-between"
+          mx="auto"
+          style={{ position: "relative", top: "-9px" }}
+        >
+
           <Link display="flex" alignItems="center" href="/">
-            {/* <Logo /> */}
-            <p>Title</p>
+            <img style={{width: "40px"}} src={logo} />
           </Link>
           <Avatar
             name="Dan Abrahmov"
             src="https://bit.ly/dan-abramov"
-            onClick={profileNav.onOpen}
+            // onClick={profileNav.onOpen}
           />
         </Flex>
         {ProfileNavContent}

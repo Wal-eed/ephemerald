@@ -58,7 +58,7 @@ function App() {
 					</Route>
 					<Route path="/map">
 						<Map
-							me={[-33.918, 151.231]}
+							me={[-33.9177, 151.2302]}
 							events={[
 								{
 									name: "1511 Lecture Group Chat",
