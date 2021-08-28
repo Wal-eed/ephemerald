@@ -143,13 +143,9 @@ const People: React.FC<Props> = () => {
         // bg="#f8f8f8"
         // maxW="container.lg"
         >
-            <Modal isOpen={isOpen} onClose={onClose} size="xs">
+            <Modal isOpen={isOpen} onClose={onClose} size="xs" isCentered>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalCloseButton
-                        class="modalCloseButton"
-                        size="sm"
-                    />
                     <ModalBody>
                         <Flex>
                             <Box>
@@ -210,6 +206,7 @@ const NavBack = () => {
                         alignContent: "flexStart",
                         justifyContent: "flexStart"
                     }}
+                    paddingLeft="10px"
                     // bg="purple"
                     flex="1"
                 >
@@ -228,6 +225,11 @@ const NavBack = () => {
                 <Box
                     flex="1"
                     fontSize="14px"
+                    // bg="blue"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    color="#008000"
                 >
                     14 Here
                 </Box>
@@ -259,10 +261,7 @@ const ProfileDisplay = ({ name, username, pic, anonymous, description, onOpen })
     }, []);
 
     return (
-        <VStack
-            spacing={2}
-            divider={<StackDivider borderColor="black" />}
-        >
+        <VStack>
             <Box
                 mb="4px"
                 h="50px"
@@ -271,9 +270,7 @@ const ProfileDisplay = ({ name, username, pic, anonymous, description, onOpen })
                 paddingLeft="6px"
                 onClick={onOpen}
             >
-                <Flex
-                // bg="yellow"
-                >
+                <Flex>
                     <Box
                         // bg="pink"
                         w="50px"
