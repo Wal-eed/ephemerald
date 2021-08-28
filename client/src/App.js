@@ -39,10 +39,13 @@ function App() {
 			<Router>
 				<Switch>
 					<Route path="/" exact>
-						<Homepage showSplash={true} />
+						<Homepage selectedTab={0} showSplash={true} />
 					</Route>
 					<Route path="/home" exact>
-						<Homepage showSplash={false} />
+						<Homepage selectedTab={0} showSplash={false} />
+					</Route>
+					<Route path="/home/messages" exact>
+						<Homepage selectedTab={2} showSplash={false} />
 					</Route>
 					<Route path="/memorabilia">
 						<Memorabilia />

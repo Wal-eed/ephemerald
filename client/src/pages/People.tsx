@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import "../People.css";
 import { Link } from "react-router-dom";
@@ -256,11 +257,7 @@ const People: React.FC<Props> = () => {
         </ModalContent>
       </Modal>
       <NavBack number={users.length} />
-      <div
-        style={{
-          marginTop: "40px",
-        }}
-      />
+
       {users.map((user, idx) => {
         return (
           <ProfileDisplay
@@ -361,66 +358,70 @@ const ProfileDisplay = ({
     return <div />;
   } else {
     return (
-      <VStack>
-        <Box
-          mb="4px"
-          h="50px"
-          bg="white"
-          w="full"
-          paddingLeft="6px"
-          onClick={() =>
-            openModal(
-              userState["name"],
-              userState["pic"],
-              userState["description"]
-            )
-          }
-        >
-          <Flex>
-            <Box
-              // bg="pink"
-              w="50px"
-              h="50px"
-            >
-              <Image
-                objectFit="cover"
-                width="42px"
-                height="42px"
-                borderRadius="42px"
-                margin="4px"
-                src={userState["pic"]}
-              />
-            </Box>
-            <Box marginLeft="6px" textAlign="left">
-              <Text fontWeight="bold" fontSize="12px">
-                {userState["name"]}
-              </Text>
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+      >
+        <VStack>
+          <Box
+            mb="4px"
+            h="50px"
+            bg="white"
+            w="full"
+            paddingLeft="6px"
+            onClick={() =>
+              openModal(
+                userState["name"],
+                userState["pic"],
+                userState["description"]
+              )
+            }
+          >
+            <Flex>
+              <Box w="50px" h="50px">
+                <Image
+                  objectFit="cover"
+                  width="42px"
+                  height="42px"
+                  borderRadius="42px"
+                  margin="4px"
+                  src={userState["pic"]}
+                />
+              </Box>
+              <Box marginLeft="6px" textAlign="left">
+                <Text fontWeight="bold" fontSize="12px">
+                  {userState["name"]}
+                </Text>
 
-              <Text fontStyle="italic" fontSize="10px" color="#545454">
-                {userState["description"]}
-              </Text>
-            </Box>
-            <Spacer />
-            <Box
-              w="50px"
-              h="50px"
-              display="flex"
-              alignContent="center"
-              justifyContent="center"
-            >
-              <IconButton
-                class="iconButton"
-                colorScheme="whiteAlpha"
-                aria-label="Direct Message"
-                icon={<ChatIcon color="blue" />}
-                onClick={() => {
-                  alert("Direct Message");
-                }}
-              />
-            </Box>
-          </Flex>
-        </Box>
-      </VStack>
+                <Text fontStyle="italic" fontSize="10px" color="#545454">
+                  {userState["description"]}
+                </Text>
+              </Box>
+              <Spacer />
+              <Box
+                w="50px"
+                h="50px"
+                display="flex"
+                alignContent="center"
+                justifyContent="center"
+              >
+                <Link to="/home/messages">
+                  <IconButton
+                    class="iconButton"
+                    colorScheme="whiteAlpha"
+                    aria-label="Direct Message"
+                    icon={<ChatIcon color="blue" />}
+                  />
+                </Link>
+              </Box>
+            </Flex>
+          </Box>
+        </VStack>
+      </motion.div>
     );
   }
 };
