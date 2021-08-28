@@ -1,6 +1,7 @@
-import { Box, Avatar, Textarea } from "@chakra-ui/react";
+import { Box, Avatar, Textarea, HStack } from "@chakra-ui/react";
 import React from "react";
 import jas from "../../assets/jas.png";
+import { FaPaperPlane } from "react-icons/fa";
 
 interface Props {}
 
@@ -15,26 +16,19 @@ const AskQuestion: React.FC<Props> = () => {
                 position: "relative",
             }}
         >
-            <Avatar
-                name="AVATAR"
-                size="lg"
-                src={jas}
-                style={{
-                    position: "absolute",
-                    left: "4%",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                }}
-            />
-            <Textarea
-                placeholder="Ask a question!"
-                resize={"none"}
-                style={{
-                    display: "inline",
-                    width: "85%",
-                    marginLeft: 80,
-                }}
-            />
+            <HStack>
+                <Box>
+                    <Avatar name="AVATAR" size="lg" src={jas} />
+                </Box>
+                <Box style={{ width: "100%" }}>
+                    <Textarea placeholder="Ask a question!" resize={"none"} />
+                </Box>
+                <Box style={{ height: "100%" }}>
+                    <button>
+                        <FaPaperPlane />
+                    </button>
+                </Box>
+            </HStack>
         </Box>
     );
 };

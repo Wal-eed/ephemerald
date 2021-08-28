@@ -11,6 +11,15 @@ interface PollChoice {
     votes: number;
 }
 
+const pollStyles = {
+    questionSeparator: true,
+    questionSeparatorWidth: "question",
+    questionBold: true,
+    questionColor: "#303030",
+    align: "center",
+    theme: "purple",
+};
+
 const ChatPoll: FC<Props> = ({ question, choices }) => {
     // Declaring poll question and answers
     const [pollQuestion, setPollQuestion] = useState<string>(question);
@@ -48,6 +57,7 @@ const ChatPoll: FC<Props> = ({ question, choices }) => {
                 question={pollQuestion}
                 answers={pollAnswers}
                 onVote={handleVote}
+                customStyles={pollStyles}
             />
         </div>
     );
