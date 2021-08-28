@@ -9,15 +9,19 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FaCommentAlt, FaMapMarked } from "react-icons/fa";
+import { AiFillMessage } from "react-icons/ai";
 import Card from "src/components/Card/Card";
 import EventList from "src/components/EventList";
 import { Event } from "src/interfaces/Event";
 import ChatHeader from "../components/ChatHeader";
 import Map from "./Map";
 import SplashScreen from "src/components/SplashScreen/SplashScreen";
+import DirectMessages from "src/pages/DirectMessages";
+import DirectMessagesList from "src/pages/DirectMessagesList";
 
-const Home = ({ showSplash }) => {
+const Home = ({ showSplash, selectedTab = 0 }) => {
   const [mapVisible, setMapVisible] = React.useState<boolean>(false);
+  const [tab, setTab] = React.useState(selectedTab);
 
   const events: Event[] = [
     {
@@ -85,6 +89,7 @@ const Home = ({ showSplash }) => {
           variant="soft-rounded"
           colorScheme="green"
           onChange={(index) => setMapVisible(index === 1)}
+          defaultIndex={tab}
           style={{
             height: "calc(100% - 70px)",
           }}
@@ -105,7 +110,7 @@ const Home = ({ showSplash }) => {
               <Text>Map</Text>
             </Tab>
             <Tab>
-              <Icon as={FaMapMarked} style={{ marginRight: "0.5rem" }} />
+              <Icon as={AiFillMessage} style={{ marginRight: "0.5rem" }} />
               <Text>Messages</Text>
             </Tab>
           </TabList>
@@ -152,7 +157,16 @@ const Home = ({ showSplash }) => {
                 />
               </div>
             </TabPanel>
-            <TabPanel>MESSAGES HERE</TabPanel>
+            <TabPanel>
+              <div
+                style={{
+                  width: "100%",
+                  height: "calc(100vh - 70px - 90px)",
+                }}
+              >
+                <DirectMessagesList />
+              </div>
+            </TabPanel>
           </TabPanels>
         </Tabs>
       </div>
