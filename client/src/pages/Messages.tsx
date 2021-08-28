@@ -72,9 +72,12 @@ const Messages: React.FC<IProps> = () => {
     },
   ]);
   const [activeChannel, setActiveChannel] = useState(channels[0].name);
-  const [messages, setMessages] = useState<IMessage[]>(shuffled.slice(0, 2));
+  const [messages, setMessages] = useState<IMessage[]>([]);
   const [joined, setJoined] = useState(false);
 
+  useEffect(() => {
+    setMessages(shuffled.slice(0, 2));
+  }, [shuffled]);
   const handleMessageSend = (value) => setMessages([...messages, value]);
 
   return (
