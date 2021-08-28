@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../People.css";
 import { ChatIcon, ChevronLeftIcon } from '@chakra-ui/icons'
-import { chakra, Text, Image, IconButton, HStack, Box, Container, Flex, Spacer, VStack, StackDivider } from "@chakra-ui/react";
+import { chakra, Text, Image, IconButton, HStack, Box, Container, Flex, Spacer, VStack, StackDivider, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody } from "@chakra-ui/react";
 import user1 from "../assets/user1.png";
 import user2 from "../assets/user2.png";
 import user3 from "../assets/user3.png";
@@ -17,6 +17,10 @@ import user12 from "../assets/user12.png";
 import user13 from "../assets/user13.png";
 import user14 from "../assets/user14.png";
 import anonymousPic from "../assets/anonymousPic.png";
+
+import facebook from "../assets/facebook.png";
+import whatsapp from "../assets/whatsapp.png";
+import instagram from "../assets/instagram.png";
 
 interface Props { }
 
@@ -122,6 +126,12 @@ const people = [
 ]
 
 const People: React.FC<Props> = () => {
+    const [users, setUsers] = useState([]);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    useEffect(() => {
+        setUsers(people);
+    }, []);
 
     return (
         <div
@@ -133,11 +143,55 @@ const People: React.FC<Props> = () => {
         // bg="#f8f8f8"
         // maxW="container.lg"
         >
+            <Modal isOpen={isOpen} onClose={onClose} size="xs">
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalCloseButton
+                        class="modalCloseButton"
+                        size="sm"
+                    />
+                    <ModalBody>
+                        <Flex>
+                            <Box>
+                                <Image
+                                    objectFit="cover"
+                                    width="42px"
+                                    height="42px"
+                                    src={facebook}
+                                />
+                            </Box>
+                            <Spacer />
+
+                            <Box>
+                                <Image
+                                    objectFit="cover"
+                                    width="42px"
+                                    height="42px"
+                                    src={whatsapp}
+                                />
+                            </Box>
+
+                            <Spacer />
+
+                            <Box>
+                                <Image
+                                    objectFit="cover"
+                                    width="42px"
+                                    height="42px"
+                                    src={instagram}
+                                />
+                            </Box>
+                        </Flex>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
             <NavBack />
-            {people.map((user, idx) => {
-                return (<ProfileDisplay key={idx} name={user.name} username={user.username} pic={user.pic} anonymous={user.anonymous} description={user.description} />)
-            })}
-        </div>
+            {
+                users.map((user, idx) => {
+                    return (<ProfileDisplay key={idx} name={user.name} username={user.username} pic={user.pic} anonymous={user.anonymous} description={user.description} onOpen={onOpen} />)
+                })
+            }
+        </div >
     );
 };
 
@@ -147,7 +201,9 @@ const NavBack = () => {
     return (
         <div>
             <div />
-            <Flex>
+            <Flex
+                height="40px"
+            >
                 <Box
                     display="flex"
                     style={{
@@ -181,7 +237,7 @@ const NavBack = () => {
     )
 }
 
-const ProfileDisplay = ({ name, username, pic, anonymous, description }) => {
+const ProfileDisplay = ({ name, username, pic, anonymous, description, onOpen }) => {
     const [userState, setUserState] = useState({});
 
     useEffect(() => {
@@ -208,28 +264,26 @@ const ProfileDisplay = ({ name, username, pic, anonymous, description }) => {
             divider={<StackDivider borderColor="black" />}
         >
             <Box
-                mb="2px"
-                h="44px"
+                mb="4px"
+                h="50px"
                 bg="white"
                 w="full"
                 paddingLeft="6px"
-                onClick={() => {
-                    alert("Clicked on " + userState["name"]);
-                }}
+                onClick={onOpen}
             >
                 <Flex
                 // bg="yellow"
                 >
                     <Box
                         // bg="pink"
-                        w="44px"
-                        h="44px"
+                        w="50px"
+                        h="50px"
                     >
                         <Image
                             objectFit="cover"
-                            width="36px"
-                            height="36px"
-                            borderRadius="36px"
+                            width="42px"
+                            height="42px"
+                            borderRadius="42px"
                             margin="4px"
                             src={userState["pic"]}
                         />
@@ -255,8 +309,8 @@ const ProfileDisplay = ({ name, username, pic, anonymous, description }) => {
                     </Box>
                     <Spacer />
                     <Box
-                        w="44px"
-                        h="44px"
+                        w="50px"
+                        h="50px"
                         display="flex"
                         alignContent="center"
                         justifyContent="center"
