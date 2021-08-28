@@ -14,14 +14,14 @@ import {
     Spacer,
     Text,
     Icon,
-    AvatarGroup
+    AvatarGroup,
 } from "@chakra-ui/react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Card from "src/components/Card/Card";
 import pulseStyles from "./Card/Card.module.scss";
-
+import { Link } from "react-router-dom";
 import user1 from "../assets/user1.png";
 import user2 from "../assets/user2.png";
 import user3 from "../assets/user3.png";
@@ -63,7 +63,12 @@ const Search = () => {
                     pointerEvents="none"
                     children={<Search2Icon color="green.300" />}
                 />
-                <Input type="tel" placeholder="" borderRadius="20px" borderColor="#68d391" />
+                <Input
+                    type="tel"
+                    placeholder=""
+                    borderRadius="20px"
+                    borderColor="#68d391"
+                />
             </InputGroup>
         </Stack>
     );
@@ -120,7 +125,7 @@ const EventList = ({ events }) => {
 
             <br />
             {DisplayedEvents.map((event) => (
-                <>
+                <Link to="/messages">
                     <EventCard
                         name={event.name}
                         distance={event.distance}
@@ -129,7 +134,7 @@ const EventList = ({ events }) => {
                         colour={event.colour}
                         attendees={event.attendees}
                     />
-                </>
+                </Link>
             ))}
         </div>
     );
@@ -137,30 +142,25 @@ const EventList = ({ events }) => {
 const EventCard = ({ name, distance, attendance, tags, colour, attendees }) => {
     return (
         <Box
-            className={(attendance >= 100) && pulseStyles.pulse}
+            className={attendance >= 100 && pulseStyles.pulse}
             borderRadius="10px"
             padding="10px"
             width="100%"
             style={{
-                boxShadow: "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
+                boxShadow:
+                    "rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px",
             }}
             marginBottom="15px"
             display="flex"
             flexDirection="column"
         >
-            <Text
-                fontSize="24px"
-                fontWeight="bold"
-                color={colour}
-            >
+            <Text fontSize="24px" fontWeight="bold" color={colour}>
                 {name}
             </Text>
 
             <HStack>
                 {tags.map((tag) => {
-                    return (
-                        <Tag tag={tag} colour={colour} />
-                    )
+                    return <Tag tag={tag} colour={colour} />;
                 })}
             </HStack>
 
@@ -168,17 +168,13 @@ const EventCard = ({ name, distance, attendance, tags, colour, attendees }) => {
 
             <HStack>
                 {/* Distance */}
-                <HStack
-                    spacing="3px"
-                >
+                <HStack spacing="3px">
                     <Icon as={FaMapMarkerAlt} w="20px" h="20px" color={colour} />
                     <Text fontWeight="bold">{distance} KM</Text>
                 </HStack>
 
                 {/* Attendance */}
-                <HStack
-                    spacing="3px"
-                >
+                <HStack spacing="3px">
                     <Icon as={BsFillPersonFill} w="20px" h="20px" color={colour} />
                     <Text fontWeight="bold">{attendance}</Text>
                 </HStack>
@@ -188,13 +184,13 @@ const EventCard = ({ name, distance, attendance, tags, colour, attendees }) => {
                 {/* Avatar Icons */}
                 <AvatarGroup max={2}>
                     {attendees.map((attendee) => {
-                        return (<Avatar name={attendee} src={avatarData[attendee]} />);
+                        return (<Avatar name={attendee} src={avatarData[attendee]} />)
                     })}
                 </AvatarGroup>
             </HStack>
         </Box>
-    )
-}
+    );
+};
 
 const Tag = ({ tag, colour }) => {
     return (
@@ -209,7 +205,7 @@ const Tag = ({ tag, colour }) => {
         >
             {tag}
         </Box>
-    )
-}
+    );
+};
 
 export default EventList;

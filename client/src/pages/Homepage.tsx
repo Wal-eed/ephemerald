@@ -16,9 +16,7 @@ import ChatHeader from "../components/ChatHeader";
 import Map from "./Map";
 import SplashScreen from "src/components/SplashScreen/SplashScreen";
 
-interface Props { }
-
-const Home = (props: Props) => {
+const Home = ({ showSplash }) => {
   const [mapVisible, setMapVisible] = React.useState<boolean>(false);
 
   const events: Event[] = [
@@ -66,7 +64,7 @@ const Home = (props: Props) => {
 
   return (
     <>
-      <SplashScreen />
+      {showSplash && <SplashScreen />}
       <ChatHeader />
       <div
         style={{
@@ -84,7 +82,8 @@ const Home = (props: Props) => {
         <Tabs
           isFitted
           //   variant="enclosed"
-          variant="soft-rounded" colorScheme="green"
+          variant="soft-rounded"
+          colorScheme="green"
           onChange={(index) => setMapVisible(index === 1)}
           style={{
             height: "calc(100% - 70px)",
@@ -104,6 +103,10 @@ const Home = (props: Props) => {
             <Tab>
               <Icon as={FaMapMarked} style={{ marginRight: "0.5rem" }} />
               <Text>Map</Text>
+            </Tab>
+            <Tab>
+              <Icon as={FaMapMarked} style={{ marginRight: "0.5rem" }} />
+              <Text>Messages</Text>
             </Tab>
           </TabList>
           <TabPanels>
@@ -149,6 +152,7 @@ const Home = (props: Props) => {
                 />
               </div>
             </TabPanel>
+            <TabPanel>MESSAGES HERE</TabPanel>
           </TabPanels>
         </Tabs>
       </div>
@@ -157,91 +161,3 @@ const Home = (props: Props) => {
 };
 
 export default Home;
-
-// <<<<<<< HEAD
-//       <div
-//         style={{
-//           borderTop: "1px solid #F2F2F2",
-//           borderRadius: "20px",
-//           // padding: 20,
-//           width: "100%",
-//           position: "relative",
-//           top: "-13px",
-//           backgroundColor: "white",
-//           height: "90vh",
-//           zIndex: 10,
-//         }}
-//       >
-//         <Tabs isFitted variant="soft-rounded" colorScheme="green">
-//           <TabList mb="1em">
-//             <Tab>
-//               <Icon as={FaCommentAlt} style={{ marginRight: "0.5rem" }} />
-//               <Text>Events</Text>
-//             </Tab>
-//             <Tab>
-//               <Icon as={FaMapMarked} style={{ marginRight: "0.5rem" }} />
-//               <Text>Map</Text>
-//             </Tab>
-//           </TabList>
-//           <TabPanels>
-//             <TabPanel>
-//               <Chat ChatList={ChatList} />
-//             </TabPanel>
-//             <TabPanel>
-//               <p>Map</p>
-//             </TabPanel>
-//           </TabPanels>
-//         </Tabs>
-//       </div>
-// =======
-//       <Tabs isFitted variant="enclosed" style={{
-//         height: "calc(100% - 70px)"
-//       }}>
-//         <TabList mb="1em" style={{
-//           marginBottom: 0,
-//           height: "50px"
-//         }}>
-//           <Tab>
-//             <Icon as={FaCommentAlt} style={{ marginRight: "0.5rem" }} />
-//             <Text>Events</Text>
-//           </Tab>
-//           <Tab>
-//             <Icon as={FaMapMarked} style={{ marginRight: "0.5rem" }} />
-//             <Text>Map</Text>
-//           </Tab>
-//         </TabList>
-//         <TabPanels>
-//           <TabPanel>
-//             <EventList events={events}/>
-//           </TabPanel>
-//           <TabPanel style={{
-//             padding: 0
-//           }}>
-//             <div style={{
-//               width: "100%",
-//               height: "calc(100vh - 70px - 50px)"
-//             }}>
-//               <Map
-//                 me={[-33.918, 151.231]}
-//                 events={[
-//                   {
-//                     name: "1511 Lecture Group Chat",
-//                     attendance: 10,
-//                     location: [-33.918, 151.231],
-//                     radius: 40,
-//                     distance: 0.3
-//                   },
-//                   {
-//                     name: "Elton John Concert",
-//                     attendance: 119,
-//                     location: [-33.917, 151.231],
-//                     radius: 60,
-//                     distance: 0.6
-//                   }
-//                 ]}
-// 						  />
-//             </div>
-//           </TabPanel>
-//         </TabPanels>
-//       </Tabs>
-// >>>>>>> main

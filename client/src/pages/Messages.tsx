@@ -13,10 +13,12 @@ import { Message } from "src/components/Message";
 import MessageInput from "src/components/MessageInput";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { CgPoll } from "react-icons/cg";
-import { BsChatDots } from "react-icons/bs";
+import { BsChatDots, BsPeople } from "react-icons/bs";
 import { QA, Poll } from ".";
 import { motion } from "framer-motion";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
+import { People } from "src/pages";
 
 interface IProps {}
 
@@ -29,7 +31,7 @@ export interface IMessage {
 const Messages: React.FC<IProps> = () => {
   const [channels, setChannels] = useState([
     {
-      name: "General Chat",
+      name: "Chat",
       icon: <BsChatDots />,
     },
     {
@@ -37,8 +39,12 @@ const Messages: React.FC<IProps> = () => {
       icon: <CgPoll />,
     },
     {
-      name: "Questions",
+      name: "Q&A",
       icon: <AiOutlineQuestionCircle />,
+    },
+    {
+      name: "People",
+      icon: <BsPeople />,
     },
   ]);
   const [activeChannel, setActiveChannel] = useState(channels[0].name);
@@ -60,16 +66,16 @@ const Messages: React.FC<IProps> = () => {
           minHeight: "55px",
         }}
       >
-        <IconButton
-          class="iconButton"
-          colorScheme="whiteAlpha"
-          aria-label="Back"
-          icon={<ChevronLeftIcon color="gray.500" />}
-          onClick={() => {
-            alert("GoBack");
-          }}
-          style={{ marginRight: "10px" }}
-        />
+        <Link to="/home">
+          <IconButton
+            class="iconButton"
+            colorScheme="whiteAlpha"
+            aria-label="Back"
+            icon={<ChevronLeftIcon color="gray.500" />}
+            style={{ marginRight: "10px" }}
+          />
+        </Link>
+
         {channels.map((channel) => (
           <HStack
             style={{
@@ -94,7 +100,7 @@ const Messages: React.FC<IProps> = () => {
         ))}
       </HStack>
       <Divider />
-      {activeChannel === "Questions" ? (
+      {activeChannel === "Q&A" ? (
         <Flex w="100%" h="100%" flexDir="column" justifyContent="space-between">
           <QA />
         </Flex>
@@ -102,6 +108,8 @@ const Messages: React.FC<IProps> = () => {
         <Flex w="100%" h="100%" flexDir="column" justifyContent="space-between">
           <Poll />
         </Flex>
+      ) : activeChannel === "People" ? (
+        <People />
       ) : (
         <Flex
           w="100%"
