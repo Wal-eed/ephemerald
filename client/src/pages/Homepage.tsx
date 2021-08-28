@@ -16,7 +16,7 @@ import ChatHeader from "../components/ChatHeader";
 import Map from "./Map";
 import SplashScreen from "src/components/SplashScreen/SplashScreen";
 
-interface Props {}
+interface Props { }
 
 const Home = (props: Props) => {
   const events: Event[] = [
@@ -26,6 +26,8 @@ const Home = (props: Props) => {
       location: [-33.918, 151.231],
       radius: 5,
       distance: 0.3,
+      tags: ["Study", "CSE"],
+      colour: "#3E00FF"
     },
     {
       name: "Elton John Concert",
@@ -33,6 +35,26 @@ const Home = (props: Props) => {
       location: [-33.917, 151.231],
       radius: 7,
       distance: 0.6,
+      tags: ["Concert", "Music"],
+      colour: "#68d391"
+    },
+    {
+      name: "Dan's Pub - Happy Hour",
+      attendance: 72,
+      location: [-33.917, 151.231],
+      radius: 7,
+      distance: 0.8,
+      tags: ["Pub", "Drinks", "Happy Hour"],
+      colour: "#FF2626"
+    },
+    {
+      name: "Friendly Soccer",
+      attendance: 8,
+      location: [-33.917, 151.231],
+      radius: 7,
+      distance: 1.0,
+      tags: ["Soccer"],
+      colour: "#B980F0"
     },
   ];
 
@@ -55,7 +77,7 @@ const Home = (props: Props) => {
       >
         <Tabs
           isFitted
-        //   variant="enclosed"
+          //   variant="enclosed"
           variant="soft-rounded" colorScheme="green"
           style={{
             height: "calc(100% - 70px)",
@@ -101,6 +123,8 @@ const Home = (props: Props) => {
                       location: [-33.918, 151.231],
                       radius: 40,
                       distance: 0.3,
+                      tags: ["Study, CSE"],
+                      colour: "#3E00FF"
                     },
                     {
                       name: "Elton John Concert",
@@ -108,6 +132,8 @@ const Home = (props: Props) => {
                       location: [-33.917, 151.231],
                       radius: 60,
                       distance: 0.6,
+                      tags: ["Concert", "Music"],
+                      colour: "#68d391"
                     },
                   ]}
                 />

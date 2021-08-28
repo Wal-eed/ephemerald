@@ -13,7 +13,7 @@ interface Props {
 	events: Event[];
 }
 
-const Map: React.FC<Props> = ({me, events}) => {
+const Map: React.FC<Props> = ({ me, events }) => {
 	return (
 		<MapContainer center={[-33.917, 151.231]} zoom={18}>
 			<TileLayer
@@ -24,7 +24,7 @@ const Map: React.FC<Props> = ({me, events}) => {
 			<Circle
 				center={me}
 				radius={5}
-				pathOptions={{color: "#0099ff"}}
+				pathOptions={{ color: "#0099ff" }}
 			/>
 
 			{events.map((event) => (
@@ -32,10 +32,10 @@ const Map: React.FC<Props> = ({me, events}) => {
 					key={event.name}
 					center={event.location}
 					radius={event.radius}
-					pathOptions={{color: "#1db954"}}
+					pathOptions={{ color: "#1db954" }}
 				>
 					<Tooltip direction="center" opacity={1} permanent>
-						{event.name}<br/>{event.attendance} people
+						{event.name}<br />{event.attendance} people
 					</Tooltip>
 				</Circle>
 			))}

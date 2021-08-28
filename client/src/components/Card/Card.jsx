@@ -3,10 +3,10 @@ import { Box } from "@chakra-ui/layout";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import styles from "./Card.module.scss";
 
-const Card = ({ ellipses = false, borderRadius="5px",  pulse=false, children }) => {
+const Card = ({ ellipses = false, borderRadius = "5px", pulse = false, children }) => {
     return (
         <Box
-              className={pulse && styles.pulse}
+            className={pulse && styles.pulse}
             style={{
                 borderRadius: borderRadius,
                 boxShadow:
