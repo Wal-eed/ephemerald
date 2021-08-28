@@ -5,17 +5,17 @@ import React from 'react';
 import Card from "src/components/Card/Card";
 import { SortList } from "src/components/SortChatList";
 
-const Chat = ({ChatList}) => {
+const EventList = ({events}) => {
     return (
         <div>
             {/* Content of chat list page */}
             <SortList/>
-            {ChatList.map((chat) => (
+            {events.map((event) => (
             <>
                 <Card>
-                <Text>{chat.heading}</Text>
-                <Text>{chat.distance} km away</Text>
-                <Text>{chat.numPeople} people</Text>
+                <Text>{event.name}</Text>
+                <Text>{event.distance} km away</Text>
+                <Text>{event.attendance} people</Text>
                 </Card>
                 <br />
             </>
@@ -24,4 +24,4 @@ const Chat = ({ChatList}) => {
     )
 }
 
-export default Chat
+export default EventList;

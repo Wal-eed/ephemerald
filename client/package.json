@@ -18,11 +18,13 @@
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
     "framer-motion": "^4.1.17",
+    "leaflet": "^1.7.1",
     "node-sass": "^6.0.1",
     "prettier": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
+    "react-leaflet": "^3.2.1",
     "react-polls": "^1.2.0",
     "react-router-dom": "^5.2.1",
     "react-scripts": "4.0.3",
@@ -44,16 +46,12 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@types/react-leaflet": "^2.8.2"
   }
 }
