@@ -13,8 +13,13 @@
 	</head>
 
 	<body>
-		<iframe src="https://lukefl.me" style="border: 0; position: absolute; left: 50%; top: calc(50% + 15px); transform: translate(-50%, -50%); width: 347px; height: calc(750px - 28px);"></iframe>
-		<div id="fill" style="border: 0; position: absolute; left: 50%; top: calc(50% - 364px); transform: translate(-50%, -50%); width: 347px; height: 40px; background: #68d391; border-radius: 3px;"></div>
+		<div id="fill" style="width: 390px; height: 760px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; border-radius: 70px; background: #68d391;"></div>
+		<iframe src="https://lukefl.me" style="border: 0; position: absolute; left: 50%; top: calc(50% + 15px); transform: translate(-50%, -50%); width: 347px; height: calc(750px - 28px); opacity: 0; transition: opacity 1s;"></iframe>
 		<img src="phone.png" style="height: 800px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; border-radius: 70px;">
+		<script>
+			document.querySelector("iframe").onload = function() {
+				document.querySelector("iframe").style.opacity = 1;
+			}
+		</script>
 	</body>
 </html>
