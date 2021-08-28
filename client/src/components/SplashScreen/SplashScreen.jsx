@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import icon from 'src/assets/logo.png';
 
 function shuffle(array) {
   var currentIndex = array.length,  randomIndex;
@@ -19,7 +20,7 @@ function shuffle(array) {
   return array;
 }
 
-const SplashScreen = ({ brand = "Ephemerald" }) => {
+const SplashScreen = ({ brand = "EPHEMERALD" }) => {
     const disappearDelays = shuffle([...Array(brand.length)].map((_, i) => i));
 
     return (
@@ -31,7 +32,7 @@ const SplashScreen = ({ brand = "Ephemerald" }) => {
                 opacity: 0
             }}
             transition={{
-                delay: 8,
+                delay: 3,
                 duration: 1
             }}
             style={{
@@ -41,45 +42,49 @@ const SplashScreen = ({ brand = "Ephemerald" }) => {
                 color: 'white',
                 position: 'absolute',
                 zIndex: 100,
+                background: 'lightgreen'
             }}>
             <div style={{
                 textAlign: 'center',
                 position: 'absolute',
                 left: '50%',
-                top: '50%',
-                transform: 'translateY(-50%) translateX(-50%)',
+                top: '40%',
+                transform: 'translateY(-40%) translateX(-50%)',
                 // textShadow: '#FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px',
-                letterSpacing: '3px',
+                letterSpacing: '2px',
                 height: '150px',
                 width: '100%',
-                background: 'black'
+                color: 'white',
+                fontWeight: 'bold',
+                            fontSize: '250%'
+                // background: '#222222'
             }}>
+                <motion.img
+                    animate={{
+                        opacity: 0
+                    }}
+                    transition={{
+                        delay: 2,
+                        duration: 1
+                    }}
+                    src={icon} style={{
+                    display: 'block',
+                    margin: '0 auto',
+                    maxWidth: 200
+                }}>
+
+                </motion.img>
                 {brand.split('').map((character, i) => (
                     <motion.span
-                        initial={{
-                            opacity: 0,
-                            fontSize: '100%'
-                        }}
                         animate={{
-                            opacity: 1,
-                            fontSize: '600%'
+                            opacity: 0
                         }}
                         transition={{
-                            delay: i * 0.25,
-                            duration: 2
+                            delay: 1.25 + disappearDelays[i] * 0.125,
+                            duration: 0.5
                         }}
                     >
-                        <motion.span
-                            animate={{
-                                opacity: 0
-                            }}
-                            transition={{
-                                delay: 4 + disappearDelays[i] * 0.15,
-                                duration: 0.5
-                            }}
-                        >
-                        {character}
-                        </motion.span>
+                    {character}
                     </motion.span>
                 ))}
             </div>
