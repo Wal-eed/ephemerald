@@ -1,3 +1,11 @@
+.ellipses {
+    svg {
+        position: absolute;
+        right: 14px;
+        top: 14px;
+    }
+}
+
 .pulse {
   border: 5px solid rgb(104, 211, 145);
   animation: pulse-animation 4s infinite;
