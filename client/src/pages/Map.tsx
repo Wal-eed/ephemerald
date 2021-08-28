@@ -1,5 +1,6 @@
 import React from "react";
 import { MapContainer, TileLayer, Circle, Tooltip } from "react-leaflet"
+import { Event, Location } from "../interfaces/Event";
 import "leaflet/dist/leaflet.css";
 import "./Map.css"
 
@@ -8,19 +9,23 @@ const attribution = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">
 // Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors
 
 interface Props {
+	me: Location;
+	events: Event[];
 }
 
-const Map: React.FC<Props> = () => (
+const Map: React.FC<Props> = ({me, events}) => (
 	<MapContainer center={[-33.917, 151.231]} zoom={18}>
 		<TileLayer
 			url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
 			attribution={attribution}
 		/>
-		<Circle center={[-33.917, 151.231]} pathOptions={{color: "#1db954"}} radius={50}>
-			<Tooltip direction="center" opacity={1} permanent>
-				comp1511 lecture<br/>17 people
-			</Tooltip>
-		</Circle>
+		{events.map(({name, attendance, location, radius}) => (
+			<Circle center={location} pathOptions={{color: "#1db954"}} radius={radius}>
+				<Tooltip direction="center" opacity={1} permanent>
+					{name}<br/>{attendance} people
+				</Tooltip>
+			</Circle>
+		))}
 	</MapContainer>
 );
 
