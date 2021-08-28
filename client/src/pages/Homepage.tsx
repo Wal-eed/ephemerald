@@ -36,10 +36,12 @@ const Home = (props: Props) => {
   return (
     <>
       <ChatHeader />
-      <Tabs isFitted variant="enclosed">
+      <Tabs isFitted variant="enclosed" style={{
+        height: "calc(100% - 70px)"
+      }}>
         <TabList mb="1em" style={{
           marginBottom: 0,
-          background: "white"
+          height: "50px"
         }}>
           <Tab>
             <Icon as={FaCommentAlt} style={{ marginRight: "0.5rem" }} />
@@ -59,10 +61,7 @@ const Home = (props: Props) => {
           }}>
             <div style={{
               width: "100%",
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              zIndex: -1
+              height: "calc(100vh - 70px - 50px)"
             }}>
               <Map
 							me={[-33.918, 151.231]}
