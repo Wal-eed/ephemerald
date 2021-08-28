@@ -14,7 +14,8 @@ import {
 } from "@chakra-ui/react";
 import Card from "src/components/Card/Card";
 import { Icon } from "@chakra-ui/react";
-import { FaMapMarked } from "react-icons/fa";
+import { FaMapMarked, FaCommentAlt } from "react-icons/fa";
+import { SortList } from "src/components/SortChatList";
 
 interface Props {}
 
@@ -25,60 +26,9 @@ interface ChatInterface {
 }
 
 const Chat = (props: Props) => {
-  const ChatList: ChatInterface[] = [
-    {
-      heading: "1511 Lecture Group Chat",
-      distance: 0.3,
-      numPeople: 10,
-    },
-    {
-      heading: "Elton John Concert",
-      distance: 0.6,
-      numPeople: 119,
-    },
-  ];
-
+ 
   return (
     <>
-      <ChatHeader />
-      <Tabs isFitted variant="enclosed">
-        <TabList mb="1em">
-          <Tab>
-            <Icon as={FaMapMarked} />
-            {" Events"}
-          </Tab>
-          <Tab>
-            <Text>
-              <Icon as={FaMapMarked} />
-              {" Map"}
-            </Text>
-          </Tab>
-          <Tab>
-            <Icon as={FaMapMarked} />
-            {" Directs"}
-          </Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            {ChatList.map((chat) => (
-              <>
-                <Card>
-                  <Text>{chat.heading}</Text>
-                  <Text>{chat.distance} km away</Text>
-                  <Text>{chat.numPeople} people</Text>
-                </Card>
-                <br />
-              </>
-            ))}
-          </TabPanel>
-          <TabPanel>
-            <p>Map</p>
-          </TabPanel>
-          <TabPanel>
-            <p>Direct</p>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
     </>
   );
 };
