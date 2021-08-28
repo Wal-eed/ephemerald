@@ -13,21 +13,28 @@ interface Props {
 	events: Event[];
 }
 
-const Map: React.FC<Props> = ({me, events}) => (
-	<MapContainer center={[-33.917, 151.231]} zoom={18}>
-		<TileLayer
-			url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-			attribution={attribution}
-		/>
-		{events.map(({name, attendance, location, radius}) => (
-			<Circle center={location} pathOptions={{color: "#1db954"}} radius={radius}>
-				<Tooltip direction="center" opacity={1} permanent>
-					{name}<br/>{attendance} people
-				</Tooltip>
-			</Circle>
-		))}
-	</MapContainer>
-);
+const Map: React.FC<Props> = ({me, events}) => {
+	return (
+		<MapContainer center={[-33.917, 151.231]} zoom={18}>
+			<TileLayer
+				url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+				attribution={attribution}
+			/>
+			{events.map((event) => (
+				<Circle
+					key={event.name}
+					center={event.location}
+					radius={event.radius}
+					pathOptions={{color: "#1db954"}}
+				>
+					<Tooltip direction="center" opacity={1} permanent>
+						{event.name}<br/>{event.attendance} people
+					</Tooltip>
+				</Circle>
+			))}
+		</MapContainer>
+	);
+}
 
 export default Map;
 

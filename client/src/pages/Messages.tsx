@@ -1,6 +1,6 @@
 import {  Box, Divider, HStack, Tag, VStack } from "@chakra-ui/react";
 import React from "react";
-import { Message } from "src/components/Message";
+import { Message } from "../components/Message";
 
 interface Props {}
 

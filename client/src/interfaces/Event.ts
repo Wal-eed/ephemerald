@@ -5,4 +5,5 @@ export interface Event {
 	attendance: number;
 	location: Location;
 	radius: number;
+	distance: number;
 }

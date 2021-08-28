@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import io from "socket.io-client";
 import "./App.css";
-import { Chat, Homepage, Memorabilia, Messages, People, QA, Poll, Map } from './pages';
+import { Homepage, Memorabilia, Messages, People, QA, Poll, Map } from './pages';
 
 // connect to the server
 const socket = io(`http://${window.location.hostname}:8080`);
@@ -30,14 +30,10 @@ socket.emit("myEventName"/*, a, b, ...*/);
 function App() {
 	return (
 		<ChakraProvider>
-
 			<Router>
 				<Switch>
 					<Route path="/" exact>
 						<Homepage />
-					</Route>
-					<Route path="/chat">
-						<Chat />
 					</Route>
 					<Route path="/memorabilia">
 						<Memorabilia />
@@ -55,12 +51,29 @@ function App() {
 						<Poll />
 					</Route>
 					<Route path="/map">
-						<Map />
+						<Map
+							me={[-33.918, 151.231]}
+							events={[
+								{
+									name: "1511 Lecture Group Chat",
+									attendance: 10,
+									location: [-33.918, 151.231],
+									radius: 40,
+									distance: 0.3
+								},
+								{
+									name: "Elton John Concert",
+									attendance: 119,
+									location: [-33.917, 151.231],
+									radius: 60,
+									distance: 0.6
+								}
+							]}
+						/>
 					</Route>
 				</Switch>
 			</Router>
 		</ChakraProvider>
-
 	);
 }
 
