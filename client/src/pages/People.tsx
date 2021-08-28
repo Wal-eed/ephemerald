@@ -128,10 +128,25 @@ const people = [
 const People: React.FC<Props> = () => {
     const [users, setUsers] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [socials, setSocials] = useState({
+        "name": null,
+        "pic": null,
+        "description": null
+    });
 
     useEffect(() => {
         setUsers(people);
     }, []);
+
+    const openModal = (name, pic, description) => {
+        setSocials({
+            "name": name,
+            "pic": pic,
+            "description": description
+        });
+
+        onOpen();
+    }
 
     return (
         <div
@@ -146,42 +161,99 @@ const People: React.FC<Props> = () => {
             <Modal isOpen={isOpen} onClose={onClose} size="xs" isCentered>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalBody>
+                    <ModalHeader>
                         <Flex>
-                            <Box>
+                            <Image
+                                objectFit="cover"
+                                width="42px"
+                                height="42px"
+                                borderRadius="42px"
+                                src={socials["pic"]}
+                            />
+                            <Box
+                                marginLeft="6px"
+                                textAlign="left"
+                            >
+                                <Text
+                                    fontWeight="bold"
+                                    fontSize="12px"
+                                >
+                                    {socials["name"]}
+                                </Text>
+
+                                <Text
+                                    fontStyle="italic"
+                                    fontSize="9px"
+                                    color="#545454"
+                                >
+                                    {socials["description"]}
+                                </Text>
+                            </Box>
+                        </Flex>
+                    </ModalHeader>
+                    <ModalBody>
+                        <Flex
+                            flexDirection="column"
+                        >
+                            <Box
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                marginBottom="15px"
+                            >
                                 <Image
                                     objectFit="cover"
                                     width="42px"
                                     height="42px"
                                     src={facebook}
+                                    marginRight="6px"
                                 />
+                                <Text>
+                                    @facebook_handle
+                                </Text>
                             </Box>
                             <Spacer />
-
-                            <Box>
+                            <Box
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                marginBottom="15px"
+                            >
                                 <Image
                                     objectFit="cover"
                                     width="42px"
                                     height="42px"
+                                    marginRight="6px"
                                     src={whatsapp}
                                 />
+                                <Text>
+                                    @whatsapp_handle
+                                </Text>
                             </Box>
 
                             <Spacer />
-
-                            <Box>
+                            <Box
+                                display="flex"
+                                flexDirection="row"
+                                alignItems="center"
+                                marginBottom="15px"
+                            >
                                 <Image
                                     objectFit="cover"
                                     width="42px"
                                     height="42px"
                                     src={instagram}
+                                    marginRight="6px"
                                 />
+                                <Text>
+                                    @instagram_handle
+                                </Text>
                             </Box>
                         </Flex>
                     </ModalBody>
                 </ModalContent>
             </Modal>
-            <NavBack />
+            <NavBack number={users.length} />
             <div
                 style={{
                     marginTop: "40px"
@@ -189,7 +261,7 @@ const People: React.FC<Props> = () => {
             />
             {
                 users.map((user, idx) => {
-                    return (<ProfileDisplay key={idx} name={user.name} username={user.username} pic={user.pic} anonymous={user.anonymous} description={user.description} onOpen={onOpen} />)
+                    return (<ProfileDisplay key={idx} name={user.name} username={user.username} pic={user.pic} anonymous={user.anonymous} description={user.description} openModal={openModal} />)
                 })
             }
         </div >
@@ -198,7 +270,7 @@ const People: React.FC<Props> = () => {
 
 export default People;
 
-const NavBack = () => {
+const NavBack = ({ number }) => {
     return (
         <div
             style={{
@@ -243,7 +315,7 @@ const NavBack = () => {
                     justifyContent="center"
                     color="#008000"
                 >
-                    14 Here
+                    {number} Here
                 </Box>
                 <Box flex="1" />
             </Flex>
@@ -251,8 +323,8 @@ const NavBack = () => {
     )
 }
 
-const ProfileDisplay = ({ name, username, pic, anonymous, description, onOpen }) => {
-    const [userState, setUserState] = useState({});
+const ProfileDisplay = ({ name, username, pic, anonymous, description, openModal }) => {
+    const [userState, setUserState] = useState(null);
 
     useEffect(() => {
         if (anonymous) {
@@ -272,72 +344,79 @@ const ProfileDisplay = ({ name, username, pic, anonymous, description, onOpen })
         }
     }, []);
 
-    return (
-        <VStack>
-            <Box
-                mb="4px"
-                h="50px"
-                bg="white"
-                w="full"
-                paddingLeft="6px"
-                onClick={onOpen}
-            >
-                <Flex>
-                    <Box
-                        // bg="pink"
-                        w="50px"
-                        h="50px"
-                    >
-                        <Image
-                            objectFit="cover"
-                            width="42px"
-                            height="42px"
-                            borderRadius="42px"
-                            margin="4px"
-                            src={userState["pic"]}
-                        />
-                    </Box>
-                    <Box
-                        marginLeft="6px"
-                        textAlign="left"
-                    >
-                        <Text
-                            fontWeight="bold"
-                            fontSize="10px"
-                        >
-                            {userState["name"]}
-                        </Text>
 
-                        <Text
-                            fontStyle="italic"
-                            fontSize="8px"
-                            color="#545454"
+    if (userState === null) {
+        return (
+            <div />
+        )
+    } else {
+        return (
+            <VStack>
+                <Box
+                    mb="4px"
+                    h="50px"
+                    bg="white"
+                    w="full"
+                    paddingLeft="6px"
+                    onClick={() => openModal(userState["name"], userState["pic"], userState["description"])}
+                >
+                    <Flex>
+                        <Box
+                            // bg="pink"
+                            w="50px"
+                            h="50px"
                         >
-                            {userState["description"]}
-                        </Text>
-                    </Box>
-                    <Spacer />
-                    <Box
-                        w="50px"
-                        h="50px"
-                        display="flex"
-                        alignContent="center"
-                        justifyContent="center"
-                    >
-                        <IconButton
-                            class="iconButton"
-                            colorScheme="whiteAlpha"
-                            aria-label="Direct Message"
-                            icon={<ChatIcon
-                                color="blue"
-                            />}
-                            onClick={() => {
-                                alert("Direct Message");
-                            }}
-                        />
-                    </Box>
-                </Flex>
-            </Box>
-        </VStack>
-    )
+                            <Image
+                                objectFit="cover"
+                                width="42px"
+                                height="42px"
+                                borderRadius="42px"
+                                margin="4px"
+                                src={userState["pic"]}
+                            />
+                        </Box>
+                        <Box
+                            marginLeft="6px"
+                            textAlign="left"
+                        >
+                            <Text
+                                fontWeight="bold"
+                                fontSize="12px"
+                            >
+                                {userState["name"]}
+                            </Text>
+
+                            <Text
+                                fontStyle="italic"
+                                fontSize="10px"
+                                color="#545454"
+                            >
+                                {userState["description"]}
+                            </Text>
+                        </Box>
+                        <Spacer />
+                        <Box
+                            w="50px"
+                            h="50px"
+                            display="flex"
+                            alignContent="center"
+                            justifyContent="center"
+                        >
+                            <IconButton
+                                class="iconButton"
+                                colorScheme="whiteAlpha"
+                                aria-label="Direct Message"
+                                icon={<ChatIcon
+                                    color="blue"
+                                />}
+                                onClick={() => {
+                                    alert("Direct Message");
+                                }}
+                            />
+                        </Box>
+                    </Flex>
+                </Box>
+            </VStack>
+        )
+    }
 }
