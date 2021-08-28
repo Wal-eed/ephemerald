@@ -4,7 +4,13 @@ import {
 } from "react-router-dom";
 import io from "socket.io-client";
 import "./App.css";
+<<<<<<< HEAD
+import { Chat, Homepage, Memorabilia, Messages, People, QA, Poll } from './pages';
+import logo from 'src/assets/logo.png';
+import { Helmet } from "react-helmet";
+=======
 import { Homepage, Memorabilia, Messages, People, QA, Poll, Map } from './pages';
+>>>>>>> origin/main
 
 // connect to the server
 const socket = io(`http://${window.location.hostname}:8080`);
@@ -30,6 +36,10 @@ socket.emit("myEventName"/*, a, b, ...*/);
 function App() {
 	return (
 		<ChakraProvider>
+			<Helmet>
+				<link rel="icon" type="image/png" href={logo} />
+			</Helmet>
+
 			<Router>
 				<Switch>
 					<Route path="/" exact>
