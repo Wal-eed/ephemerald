@@ -182,6 +182,11 @@ const People: React.FC<Props> = () => {
                 </ModalContent>
             </Modal>
             <NavBack />
+            <div
+                style={{
+                    marginTop: "40px"
+                }}
+            />
             {
                 users.map((user, idx) => {
                     return (<ProfileDisplay key={idx} name={user.name} username={user.username} pic={user.pic} anonymous={user.anonymous} description={user.description} onOpen={onOpen} />)
@@ -195,7 +200,14 @@ export default People;
 
 const NavBack = () => {
     return (
-        <div>
+        <div
+            style={{
+                position: "fixed",
+                width: "100%",
+                top: "0",
+                backgroundColor: "#f8f8f8"
+            }}
+        >
             <div />
             <Flex
                 height="40px"
