@@ -1,8 +1,29 @@
-import { Grid, GridItem, Select, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import { Search2Icon } from "@chakra-ui/icons";
+import {
+    Grid,
+    GridItem,
+    Input,
+    InputGroup,
+    InputLeftElement, Select,
+    Stack,
+    Text
+} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import Card from "src/components/Card/Card";
-import { SortList } from "src/components/SortChatList";
+
+const Search = () => {
+  return (
+    <Stack spacing={4}>
+      <InputGroup>
+        <InputLeftElement
+          pointerEvents="none"
+          children={<Search2Icon color="green.300" />}
+        />
+        <Input type="tel" placeholder="" borderRadius="20px" borderColor="#68d391" />
+      </InputGroup>
+    </Stack>
+  );
+};
 
 const EventList = ({ events }) => {
   const [DisplayedEvents, setDisplayedEvents] = useState(events);
@@ -40,11 +61,11 @@ const EventList = ({ events }) => {
 
   return (
     <div>
-      {/* Content of chat list page */}
-      {/* <SortList ChatList={DisplayedEvents} setChatList={setDisplayedEvents} />
-       */}
-      <Grid>
-        <GridItem colStart={12} colEnd={12}>
+      <Grid gap={5}>
+        <GridItem colStart={1} colEnd={2}>
+          <Search />
+        </GridItem>
+        <GridItem colStart={3} colEnd={3}>
           <Select borderColor="white" value={selected} onChange={change_select}>
             <option value="near me">Near me</option>
             <option value="hot">Hot</option>
