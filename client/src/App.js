@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import io from "socket.io-client";
 import {
@@ -7,7 +6,7 @@ import {
 	Route,
 	Link
 } from "react-router-dom";
-import { Homepage, Chat, Messages, Memorabilia, People, QA } from './pages';
+import { Homepage, Chat, Messages, Memorabilia, People, QA, Map } from './pages';
 
 // connect to the server
 const socket = io(`http://${window.location.hostname}:8080`);
@@ -53,6 +52,9 @@ function App() {
 					</Route>
 					<Route path="/qa">
 						<QA />
+					</Route>
+					<Route path="/map">
+						<Map />
 					</Route>
 				</Switch>
 			</Router>
