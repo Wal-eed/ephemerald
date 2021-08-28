@@ -1,7 +1,22 @@
-import { Divider, Flex, HStack, Tag, VStack, Button } from "@chakra-ui/react";
+import {
+  Divider,
+  Flex,
+  HStack,
+  Tag,
+  VStack,
+  Button,
+  Box,
+  IconButton,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Message } from "src/components/Message";
 import MessageInput from "src/components/MessageInput";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
+import { CgPoll } from "react-icons/cg";
+import { BsChatDots } from "react-icons/bs";
+import { QA, Poll } from ".";
+import { motion } from "framer-motion";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
 
 interface IProps {}
 
@@ -12,8 +27,21 @@ export interface IMessage {
 }
 
 const Messages: React.FC<IProps> = () => {
-  const [channels, setChannels] = useState(["Main Channel", "Polls", "Q&A"]);
-  const [activeChannel, setActiveChannel] = useState(channels[0]);
+  const [channels, setChannels] = useState([
+    {
+      name: "General Chat",
+      icon: <BsChatDots />,
+    },
+    {
+      name: "Polls",
+      icon: <CgPoll />,
+    },
+    {
+      name: "Questions",
+      icon: <AiOutlineQuestionCircle />,
+    },
+  ]);
+  const [activeChannel, setActiveChannel] = useState(channels[0].name);
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [joined, setJoined] = useState(false);
 
@@ -28,53 +56,94 @@ const Messages: React.FC<IProps> = () => {
         whiteSpace="nowrap"
         overflowX="auto"
         overflowY="hidden"
+        style={{
+          minHeight: "55px",
+        }}
       >
-        {channels.map((channel) => {
-          return (
-            <Tag
-              onClick={() => setActiveChannel(channel)}
-              minW="fit-content"
-              style={{
-                background: activeChannel === channel && "#2bc253",
-                color: activeChannel === channel && "white",
-              }}
-            >
-              {channel}
-            </Tag>
-          );
-        })}
+        <IconButton
+          class="iconButton"
+          colorScheme="whiteAlpha"
+          aria-label="Back"
+          icon={<ChevronLeftIcon color="gray.500" />}
+          onClick={() => {
+            alert("GoBack");
+          }}
+          style={{ marginRight: "10px" }}
+        />
+        {channels.map((channel) => (
+          <HStack
+            style={{
+              background:
+                activeChannel === channel.name ? "#2bc253" : "#dddddd",
+              color: activeChannel === channel.name && "white",
+              transform: activeChannel === channel.name && "scale(1.1)",
+              transition: "0.25s all ease-in-out",
+              padding: "10px",
+              userSelect: "none",
+              cursor: "pointer",
+              borderRadius: 100,
+              fontSize: "75%",
+            }}
+            onClick={() => setActiveChannel(channel.name)}
+          >
+            <Box>{channel.icon}</Box>
+            <Box>
+              <span>{channel.name}</span>
+            </Box>
+          </HStack>
+        ))}
       </HStack>
       <Divider />
-      {activeChannel === ""}
-      <Flex
-        w="100%"
-        h="100%"
-        flexDir="column"
-        justifyContent="space-between"
-        overflowY="hidden"
-      >
-        <VStack w="100%" alignItems="start" overflowY="auto">
-          {messages
-            ? messages.map((msg) => {
-                return (
-                  <Message name={msg.name} time={msg.time}>
-                    {msg.text}
-                  </Message>
-                );
-              })
-            : null}
-        </VStack>
-        <Flex p="1rem" justifyContent="center" alignItems="center">
-          {!joined ? (
-            <Button onClick={() => setJoined(true)}>Join room</Button>
-          ) : (
-            <MessageInput
-              channel={activeChannel}
-              onEnterPressed={handleMessageSend}
-            />
-          )}
+      {activeChannel === "Questions" ? (
+        <Flex w="100%" h="100%" flexDir="column" justifyContent="space-between">
+          <QA />
         </Flex>
-      </Flex>
+      ) : activeChannel === "Polls" ? (
+        <Flex w="100%" h="100%" flexDir="column" justifyContent="space-between">
+          <Poll />
+        </Flex>
+      ) : (
+        <Flex
+          w="100%"
+          h="100%"
+          flexDir="column"
+          justifyContent="space-between"
+          overflowY="hidden"
+        >
+          <VStack w="100%" alignItems="start" overflowY="auto">
+            {messages
+              ? messages.map((msg) => {
+                  return (
+                    <motion.div
+                      initial={{
+                        x: -100,
+                        opacity: 0,
+                      }}
+                      animate={{
+                        x: 0,
+                        opacity: 1,
+                      }}
+                    >
+                      <Message name={msg.name} time={msg.time}>
+                        {msg.text}
+                      </Message>
+                    </motion.div>
+                  );
+                })
+              : null}
+          </VStack>
+          <Flex p="1rem" justifyContent="center" alignItems="center">
+            {!joined ? (
+              <Button onClick={() => setJoined(true)}>Join room</Button>
+            ) : (
+              <MessageInput
+                channel={activeChannel}
+                onEnterPressed={handleMessageSend}
+              />
+            )}
+          </Flex>
+        </Flex>
+      )}
     </VStack>
   );
 };
