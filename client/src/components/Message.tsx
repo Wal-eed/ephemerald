@@ -10,9 +10,9 @@ interface Props {
 export const Message: React.FC<Props> = ({ name, time, children}) => {
   return (
     <HStack w="100%"  paddingInline="0.5rem">
-      <Avatar name={ name}/>
+      <Avatar name={name}/>
       <VStack spacing={0} justifySelf="start">
-        <HStack alignSelf="start"><Text as="strong">{name}</Text><Text as="i">{time}</Text></HStack>
+        <HStack alignSelf="start"><Text as="strong">{name}</Text><Text color="gray.500">{time}</Text></HStack>
         <Text justifySelf="start" textAlign="start">{children}</Text>
       </VStack>
     </HStack>

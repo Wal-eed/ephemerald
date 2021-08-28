@@ -29,7 +29,6 @@ socket.emit("myEventName"/*, a, b, ...*/);
 
 function App() {
 	return (
-		<div className="App">
 			<ChakraProvider>
 
 				<Router>
@@ -56,7 +55,6 @@ function App() {
 				</Router>
 			</ChakraProvider>
 
-		</div>
 	);
 }
 
