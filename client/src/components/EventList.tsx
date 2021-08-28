@@ -67,16 +67,11 @@ const sortEventList = (events, sortMethod) => {
   return tempEventList;
 };
 
-const Search = ({ allEvents, setDisplayedEvents, sortMethod }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const Search = ({ allEvents, setSearchQuery, sortMethod }) => {
   const sortedAllEvents = sortEventList(allEvents, sortMethod);
-  const change_query = (event) => {
-    const val = event.target.value;
-    setSearchQuery(val);
-    const filteredEvents = sortedAllEvents.filter((e) => {
-      return e.name.toLowerCase().includes(val.toLowerCase());
-    });
-    setDisplayedEvents(filteredEvents);
+
+  const changeQuery = (event) => {
+    setSearchQuery(event.target.value);
   };
 
   return (
@@ -91,8 +86,7 @@ const Search = ({ allEvents, setDisplayedEvents, sortMethod }) => {
           placeholder=""
           borderRadius="20px"
           borderColor="#68d391"
-          value={searchQuery}
-          onChange={change_query}
+          onChange={changeQuery}
         />
       </InputGroup>
     </Stack>
@@ -100,12 +94,8 @@ const Search = ({ allEvents, setDisplayedEvents, sortMethod }) => {
 };
 
 const EventList = ({ events }) => {
-  const [DisplayedEvents, setDisplayedEvents] = useState(events);
+  const [searchQuery, setSearchQuery] = useState("");
   console.log("Loading event list page");
-
-  useEffect(() => {
-    console.log(DisplayedEvents);
-  }, [DisplayedEvents]);
 
   const [selected, setSelected] = useState("near me");
 
@@ -127,7 +117,7 @@ const EventList = ({ events }) => {
     setDisplayedEvents(tempChatList);
   };
 
-  const change_select = (event) => {
+  const changeSelect = (event) => {
     const val = event.target.value;
     setSelected(val);
     changeChatList(val);
@@ -139,12 +129,12 @@ const EventList = ({ events }) => {
         <GridItem colStart={1} colEnd={2}>
           <Search
             allEvents={events}
-            setDisplayedEvents={setDisplayedEvents}
+            setSearchQuery={setSearchQuery}
             sortMethod={selected}
           />
         </GridItem>
         <GridItem colStart={3} colEnd={3}>
-          <Select borderColor="white" value={selected} onChange={change_select}>
+          <Select borderColor="white" value={selected} onChange={changeSelect}>
             <option value="near me">Near me</option>
             <option value="hot">Hot</option>
             {/* <option value="new">New</option> */}
@@ -153,7 +143,9 @@ const EventList = ({ events }) => {
       </Grid>
 
       <br />
-      {DisplayedEvents.map((event) => (
+      {events.filter((event) => {
+        return event.name.toLowerCase().includes(searchQuery.toLowerCase());
+      }).map((event) => (
         <Link to="/messages">
           <EventCard
             name={event.name}
