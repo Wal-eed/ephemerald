@@ -1,0 +1,10 @@
+import { Box } from '@chakra-ui/react'
+import React from 'react'
+
+export const Chip: React.FC = ({ children }) => {
+  return (
+    <Box rounded="1rem">
+
+    </Box>
+  )
+}

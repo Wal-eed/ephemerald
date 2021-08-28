@@ -12,6 +12,7 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
+import Card from "src/components/Card/Card";
 
 interface Props {}
 
@@ -21,13 +22,13 @@ interface ChatInterface {
   numPeople: Number;
 }
 
-const Card: React.FC<Props> = ({ children }) => {
-  return (
-    <Box marginY="5" border="1px" w="100%" p={4} borderRadius={20}>
-      {children}
-    </Box>
-  );
-};
+// const Card: React.FC<Props> = ({ children }) => {
+//   return (
+//     <Box marginY="5" border="1px" w="100%" p={4} borderRadius={20}>
+//       {children}
+//     </Box>
+//   );
+// };
 
 const Chat = (props: Props) => {
   const ChatList: ChatInterface[] = [
@@ -56,11 +57,14 @@ const Chat = (props: Props) => {
           <TabPanel>
             <Container>
               {ChatList.map((chat) => (
-                <Card>
-                  <Text>{chat.heading}</Text>
-                  <Text>{chat.distance} km away</Text>
-                  <Text>{chat.numPeople} people</Text>
-                </Card>
+                <>
+                  <Card>
+                    <Text>{chat.heading}</Text>
+                    <Text>{chat.distance} km away</Text>
+                    <Text>{chat.numPeople} people</Text>
+                  </Card>
+                  <br />
+                </>
               ))}
             </Container>
           </TabPanel>

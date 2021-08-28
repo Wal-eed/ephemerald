@@ -1,44 +1,30 @@
-import React from "react";
 import {
-  chakra,
-  Flex,
-  HStack,
-  Link,
+  Avatar,
   Button,
-  useColorModeValue,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Box,
-  useDisclosure,
-  Spacer,
-  IconButton,
-  SimpleGrid,
-  Stack,
-  VStack,
+  chakra,
   CloseButton,
-  useColorMode,
+  Flex,
+  Link,
+  useColorModeValue,
+  useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
-
-import { IoIosArrowDown } from "react-icons/io";
-import { AiFillHome, AiOutlineInbox, AiOutlineMenu } from "react-icons/ai";
+import React from "react";
+import { AiFillHome } from "react-icons/ai";
 import { BsFillCameraVideoFill } from "react-icons/bs";
-import { FaMoon, FaSun } from "react-icons/fa";
+import DarkModeButton from "./DarkModeButton";
 
 export default function WfWf(props) {
   const bg = useColorModeValue("white", "gray.800");
-  const mobileNav = useDisclosure();
-  const { toggleColorMode: toggleMode } = useColorMode();
-  const text = useColorModeValue("dark", "light");
-  const SwitchIcon = useColorModeValue(FaMoon, FaSun);
+  const profileNav = useDisclosure();
 
-  const MobileNavContent = (
+  const ProfileNavContent = (
     <VStack
       pos="absolute"
       top={0}
       left={0}
       right={0}
-      display={mobileNav.isOpen ? "flex" : "none"}
+      display={profileNav.isOpen ? "flex" : "none"}
       flexDirection="column"
       p={2}
       pb={4}
@@ -51,7 +37,7 @@ export default function WfWf(props) {
       <CloseButton
         aria-label="Close menu"
         justifySelf="self-start"
-        onClick={mobileNav.onClose}
+        onClick={profileNav.onClose}
       />
       <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
         Map
@@ -66,32 +52,17 @@ export default function WfWf(props) {
     <React.Fragment>
       <chakra.header h="full" bg={bg} w="full" px={{ base: 2, sm: 4 }} py={4}>
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
-          <IconButton
-            aria-label="Open menu"
-            fontSize="20px"
-            color={useColorModeValue("gray.800", "inherit")}
-            variant="ghost"
-            icon={<AiOutlineMenu />}
-            onClick={mobileNav.onOpen}
-          />
           <Link display="flex" alignItems="center" href="/">
             {/* <Logo /> */}
+            <p>Title</p>
           </Link>
-          <Box display="flex" alignItems="center">
-            <IconButton
-              size="md"
-              fontSize="lg"
-              aria-label={`Switch to ${text} mode`}
-              variant="ghost"
-              color="current"
-              ml={{ base: "0", md: "3" }}
-              onClick={toggleMode}
-              icon={<SwitchIcon />}
-            />
-          </Box>
+          <Avatar
+            name="Dan Abrahmov"
+            src="https://bit.ly/dan-abramov"
+            onClick={profileNav.onOpen}
+          />
         </Flex>
-
-        {MobileNavContent}
+        {ProfileNavContent}
       </chakra.header>
     </React.Fragment>
   );
