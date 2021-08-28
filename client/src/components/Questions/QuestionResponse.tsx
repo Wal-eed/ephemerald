@@ -49,6 +49,7 @@ const QuestionResponse: React.FC<Props> = ({ response }) => {
                     <span
                         style={{
                             color: votes > 0 ? "green" : "red",
+                            userSelect: "none",
                         }}
                     >
                         {votes}

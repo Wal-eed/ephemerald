@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import ChatPoll from "src/components/Polls/ChatPoll";
-import { Box, VStack, StackDivider, Container, Avatar } from "@chakra-ui/react";
+import {
+    Box,
+    VStack,
+    StackDivider,
+    Container,
+    Avatar,
+    HStack,
+} from "@chakra-ui/react";
 import QuestionThread from "src/components/Questions/QuestionThread";
 import AskQuestion from "src/components/Questions/AskQuestion";
 import elon from "src/assets/elon.png";
@@ -60,7 +67,7 @@ const QA: React.FC<Props> = () => {
                     name: "Elon Musk",
                     avatar: elon,
                     votes: -1,
-                    response: "Yes",
+                    response: "No",
                 },
             ],
         },
@@ -68,26 +75,17 @@ const QA: React.FC<Props> = () => {
 
     return (
         <Container maxW="container.lg">
-            <div
-                style={{
-                    width: 500,
-                    display: "block",
-                    margin: "0 auto",
-                }}
-            >
-                <ChatPoll
-                    question={"What should Elton John play next?"}
-                    choices={[
-                        "Rocket Man",
-                        "Don't Go Breaking My Heart",
-                        "I'm Still Standing",
-                        "Circle Of Life",
-                        "Can You Feel The Love Tonight",
-                        "Candle In The Wind",
-                    ]}
-                />
-            </div>
-
+            <ChatPoll
+                question={"What should Elton John play next?"}
+                choices={[
+                    "Rocket Man",
+                    "Don't Go Breaking My Heart",
+                    "I'm Still Standing",
+                    "Circle Of Life",
+                    "Can You Feel The Love Tonight",
+                    "Candle In The Wind",
+                ]}
+            />
             <AskQuestion />
 
             <VStack
