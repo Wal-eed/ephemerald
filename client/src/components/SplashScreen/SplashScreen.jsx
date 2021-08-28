@@ -44,7 +44,7 @@ const SplashScreen = ({ brand = "EPHEMERALD" }) => {
         color: "white",
         position: "absolute",
         zIndex: 100,
-        background: "lightgreen",
+        background: "#68d391",
         pointerEvents: "none",
       }}
     >

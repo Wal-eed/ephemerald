@@ -92,27 +92,12 @@ const Home = (props: Props) => {
               <div
                 style={{
                   width: "100%",
-                  height: "calc(100vh - 70px - 50px)",
+                  height: "calc(100vh - 60px - 50px)",
                 }}
               >
                 <Map
                   me={[-33.9177, 151.2302]}
-                  events={[
-                    {
-                      name: "1511 Lecture Group Chat",
-                      attendance: 10,
-                      location: [-33.918, 151.231],
-                      radius: 40,
-                      distance: 0.3
-                    },
-                    {
-                      name: "Elton John Concert",
-                      attendance: 119,
-                      location: [-33.917, 151.231],
-                      radius: 60,
-                      distance: 0.6
-                    }
-                  ]}
+                  events={events}
                   visible={mapVisible}
 						    />
               </div>
