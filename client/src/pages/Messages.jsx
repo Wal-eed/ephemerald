@@ -8,7 +8,7 @@ import {
   Box,
   IconButton,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Message } from "src/components/Message";
 import MessageInput from "src/components/MessageInput";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
@@ -28,7 +28,31 @@ export interface IMessage {
   name: string;
 }
 
+const mockMessages: IMessage[] = [
+  {
+    text: "Wow this is so cool!",
+    time: "3:13 AM",
+    name: "Tim Apple",
+  },
+  {
+    text: "Looking forward to this event.",
+    time: "6:50 AM",
+    name: "Joanne Van de Huis",
+  },
+  {
+    text: "When is the event starting?",
+    time: "10:11 AM",
+    name: "Joey Joeson",
+  },
+  {
+    text: "I'm stuff.",
+    time: "4:20 PM",
+    name: "Robert Downey Jr.",
+  },
+];
+
 const Messages: React.FC<IProps> = () => {
+  const shuffled = mockMessages.sort(() => 0.5 - Math.random());
   const [channels, setChannels] = useState([
     {
       name: "Chat",
@@ -60,6 +84,10 @@ const Messages: React.FC<IProps> = () => {
   window.socket.on("message", (value) => {
     setMessages([...messages, value]);
   })
+
+  useEffect(() => {
+    setMessages(shuffled.slice(0, 2));
+  }, [shuffled]);
 
   return (
     <VStack h="100vh" w="100%">
