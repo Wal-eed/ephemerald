@@ -29,7 +29,7 @@ const Home = (props: Props) => {
       radius: 5,
       distance: 0.3,
       tags: ["Study", "CSE"],
-      colour: "#3E00FF"
+      colour: "#68d391"
     },
     {
       name: "Elton John Concert",
@@ -47,7 +47,7 @@ const Home = (props: Props) => {
       radius: 7,
       distance: 0.8,
       tags: ["Pub", "Drinks", "Happy Hour"],
-      colour: "#FF2626"
+      colour: "#68d391"
     },
     {
       name: "Friendly Soccer",
@@ -56,7 +56,7 @@ const Home = (props: Props) => {
       radius: 7,
       distance: 1.0,
       tags: ["Soccer"],
-      colour: "#B980F0"
+      colour: "#68d391"
     },
   ];
 
