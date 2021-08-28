@@ -27,6 +27,7 @@ const MessageInput: React.FC<IProps> = ({ channel, onEnterPressed }) => {
                 minute: "2-digit",
               }),
             });
+            setValue("");
           }
         }}
       />

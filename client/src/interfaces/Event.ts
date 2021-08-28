@@ -6,4 +6,7 @@ export interface Event {
 	location: Location;
 	radius: number;
 	distance: number;
+	tags: Array<string>;
+	colour: string;
+	attendees: Array<string>;
 }

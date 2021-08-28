@@ -14,7 +14,7 @@ interface Props {
 	visible: boolean;
 }
 
-const Map: React.FC<Props> = ({me, events, visible}) => {
+const Map: React.FC<Props> = ({ me, events, visible }) => {
 	const mapRef = React.useRef<any>();
 
 	React.useEffect(() => {
@@ -37,7 +37,7 @@ const Map: React.FC<Props> = ({me, events, visible}) => {
 			<Circle
 				center={me}
 				radius={5}
-				pathOptions={{color: "#0099ff"}}
+				pathOptions={{ color: "#0099ff" }}
 			/>
 
 			{events.map((event) => (
@@ -45,10 +45,10 @@ const Map: React.FC<Props> = ({me, events, visible}) => {
 					key={JSON.stringify(event)}
 					center={event.location}
 					radius={event.radius}
-					pathOptions={{color: "#1db954"}}
+					pathOptions={{ color: "#1db954" }}
 				>
 					<Tooltip direction="center" opacity={1} permanent>
-						{event.name}<br/>{event.attendance} people
+						{event.name}<br />{event.attendance} people
 					</Tooltip>
 				</Circle>
 			))}
