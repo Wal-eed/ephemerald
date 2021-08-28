@@ -21,7 +21,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import React, { useState, useEffect } from "react";
 import Card from "src/components/Card/Card";
 import pulseStyles from "./Card/Card.module.scss";
-
+import { Link } from "react-router-dom";
 import user1 from "../assets/user1.png";
 import user6 from "../assets/user6.png";
 
@@ -72,10 +72,6 @@ const Search = ({ allEvents, setDisplayedEvents, sortMethod }) => {
 
 const EventList = ({ events }) => {
   const [DisplayedEvents, setDisplayedEvents] = useState(events);
-
-  useEffect(() => {
-  }, [DisplayedEvents]);
-
   const [selected, setSelected] = useState("near me");
 
   const changeEventList = (val: string) => {
@@ -106,7 +102,7 @@ const EventList = ({ events }) => {
 
       <br />
       {DisplayedEvents.map((event) => (
-        <>
+        <Link to="/messages">
           <EventCard
             name={event.name}
             distance={event.distance}
@@ -114,7 +110,7 @@ const EventList = ({ events }) => {
             tags={event.tags}
             colour={event.colour}
           />
-        </>
+        </Link>
       ))}
     </div>
   );
