@@ -28,12 +28,9 @@ import user6 from "../assets/user6.png";
 const sortEventList = (events, sortMethod) => {
   let tempEventList = events;
   tempEventList.sort((first, second) => {
-    console.log(sortMethod);
     if (sortMethod === "near me") {
-      console.log(first.distance);
       return first.distance - second.distance;
     } else if (sortMethod === "hot") {
-      console.log(first.attendance);
       return second.attendance - first.attendance;
     }
     return 0;
@@ -75,10 +72,8 @@ const Search = ({ allEvents, setDisplayedEvents, sortMethod }) => {
 
 const EventList = ({ events }) => {
   const [DisplayedEvents, setDisplayedEvents] = useState(events);
-  console.log("Loading event list page");
 
   useEffect(() => {
-    console.log(DisplayedEvents);
   }, [DisplayedEvents]);
 
   const [selected, setSelected] = useState("near me");
