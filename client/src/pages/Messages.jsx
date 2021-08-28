@@ -176,7 +176,7 @@ const Messages: React.FC<IProps> = () => {
           </VStack>
           <Flex p="1rem" justifyContent="center" alignItems="center">
             {!joined ? (
-              <Button onClick={() => setJoined(true)}>Join room</Button>
+              <Button onClick={() => setJoined(true)} style={{width: "100%", background: "#68d391", color: "white"}}>Join room</Button>
             ) : (
               <MessageInput
                 channel={activeChannel}
