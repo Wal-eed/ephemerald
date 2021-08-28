@@ -10,6 +10,7 @@ import React from "react";
 import { FaCommentAlt, FaMapMarked } from "react-icons/fa";
 import Chat from "src/components/Chat";
 import ChatHeader from "../components/ChatHeader";
+import SplashScreen from 'src/components/SplashScreen/SplashScreen';
 
 interface Props {}
 
@@ -35,6 +36,7 @@ const Home = (props: Props) => {
 
   return (
     <>
+      <SplashScreen />
       <ChatHeader />
       <Tabs isFitted variant="enclosed">
         <TabList mb="1em">
