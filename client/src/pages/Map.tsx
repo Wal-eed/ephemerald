@@ -20,6 +20,13 @@ const Map: React.FC<Props> = ({me, events}) => {
 				url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
 				attribution={attribution}
 			/>
+
+			<Circle
+				center={me}
+				radius={5}
+				pathOptions={{color: "#0099ff"}}
+			/>
+
 			{events.map((event) => (
 				<Circle
 					key={event.name}
