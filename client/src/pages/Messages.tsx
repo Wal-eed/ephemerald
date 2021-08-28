@@ -12,12 +12,8 @@ export interface IMessage {
 }
 
 const Messages: React.FC<IProps> = () => {
-  const [channels, setChannels] = useState([
-    "channel 1",
-    "cool channel",
-    "join 4 vbucks",
-  ]);
-  const [activeChannel, setActiveChannel] = useState("channel 1");
+  const [channels, setChannels] = useState(["Main Channel", "Polls", "Q&A"]);
+  const [activeChannel, setActiveChannel] = useState(channels[0]);
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [joined, setJoined] = useState(false);
 
@@ -34,10 +30,22 @@ const Messages: React.FC<IProps> = () => {
         overflowY="hidden"
       >
         {channels.map((channel) => {
-          return <Tag minW="fit-content">{channel}</Tag>;
+          return (
+            <Tag
+              onClick={() => setActiveChannel(channel)}
+              minW="fit-content"
+              style={{
+                background: activeChannel === channel && "#2bc253",
+                color: activeChannel === channel && "white",
+              }}
+            >
+              {channel}
+            </Tag>
+          );
         })}
       </HStack>
       <Divider />
+      {activeChannel === ""}
       <Flex
         w="100%"
         h="100%"
