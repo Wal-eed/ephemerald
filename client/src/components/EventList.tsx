@@ -23,7 +23,37 @@ import Card from "src/components/Card/Card";
 import pulseStyles from "./Card/Card.module.scss";
 
 import user1 from "../assets/user1.png";
+import user2 from "../assets/user2.png";
+import user3 from "../assets/user3.png";
+import user4 from "../assets/user4.png";
+import user5 from "../assets/user5.png";
 import user6 from "../assets/user6.png";
+import user7 from "../assets/user7.png";
+import user8 from "../assets/user8.png";
+import user9 from "../assets/user9.png";
+import user10 from "../assets/user10.png";
+import user11 from "../assets/user11.png";
+import user12 from "../assets/user12.png";
+import user13 from "../assets/user13.png";
+import user14 from "../assets/user14.png";
+
+const avatarData = {
+    "Adam Smith": user1,
+    "Romney Crawford": user2,
+    "Sarah Brown": user3,
+    "Matt King": user4,
+    "Megan Fitzgerald": user5,
+    "Isabella Lee": user6,
+    "Devansh Singh": user7,
+    "Lizzie James": user8,
+    "Watson Holmes": user9,
+    "Lauren Hamilton": user10,
+    "Vicky Chen": user11,
+    "Finn Bjergsen": user12,
+    "Ross Lopez": user13,
+    "Sam DrinkWater": user14
+}
+
 
 const Search = () => {
     return (
@@ -97,13 +127,14 @@ const EventList = ({ events }) => {
                         attendance={event.attendance}
                         tags={event.tags}
                         colour={event.colour}
+                        attendees={event.attendees}
                     />
                 </>
             ))}
         </div>
     );
 };
-const EventCard = ({ name, distance, attendance, tags, colour }) => {
+const EventCard = ({ name, distance, attendance, tags, colour, attendees }) => {
     return (
         <Box
             className={(attendance >= 100) && pulseStyles.pulse}
@@ -156,8 +187,9 @@ const EventCard = ({ name, distance, attendance, tags, colour }) => {
 
                 {/* Avatar Icons */}
                 <AvatarGroup max={2}>
-                    <Avatar name="Adam Smith" src={user1} />
-                    <Avatar name="Isabella Lee" src={user6} />
+                    {attendees.map((attendee) => {
+                        return (<Avatar name={attendee} src={avatarData[attendee]} />);
+                    })}
                 </AvatarGroup>
             </HStack>
         </Box>

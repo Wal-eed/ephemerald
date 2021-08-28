@@ -8,4 +8,5 @@ export interface Event {
 	distance: number;
 	tags: Array<string>;
 	colour: string;
+	attendees: Array<string>;
 }

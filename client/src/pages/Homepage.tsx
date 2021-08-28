@@ -23,13 +23,24 @@ const Home = (props: Props) => {
 
   const events: Event[] = [
     {
-      name: "1511 Lecture Group Chat",
+      name: "Climate Change Conference",
+      attendance: 72,
+      location: [-33.917, 151.231],
+      radius: 7,
+      distance: 0.0,
+      tags: ["Academic", "Environmental", "Networking"],
+      colour: "#68d391",
+      attendees: ["Isabella Lee", "Devansh Singh", "Lizzie James", "Sam Drinkwater"]
+    },
+    {
+      name: "SYNCS BBQ",
       attendance: 10,
       location: [-33.918, 151.231],
       radius: 5,
       distance: 0.3,
-      tags: ["Study", "CSE"],
-      colour: "#68d391"
+      tags: ["CSE", "Fun", "Study"],
+      colour: "#68d391",
+      attendees: ["Adam Smith", "Romney Crawford", "Sarah Brown", "Vicky Chen", "Finn Bjergsen"]
     },
     {
       name: "Elton John Concert",
@@ -38,25 +49,18 @@ const Home = (props: Props) => {
       radius: 7,
       distance: 0.6,
       tags: ["Concert", "Music"],
-      colour: "#68d391"
+      colour: "#68d391",
+      attendees: ["Matt King", "Megan Fitzgerald", "Ross Lopez"]
     },
     {
       name: "Dan's Pub - Happy Hour",
-      attendance: 72,
+      attendance: 47,
       location: [-33.917, 151.231],
       radius: 7,
       distance: 0.8,
       tags: ["Pub", "Drinks", "Happy Hour"],
-      colour: "#68d391"
-    },
-    {
-      name: "Friendly Soccer",
-      attendance: 8,
-      location: [-33.917, 151.231],
-      radius: 7,
-      distance: 1.0,
-      tags: ["Soccer"],
-      colour: "#68d391"
+      colour: "#68d391",
+      attendees: ["Watson Holmes", "Lauren Hamilton"]
     },
   ];
 
@@ -127,7 +131,8 @@ const Home = (props: Props) => {
                       radius: 40,
                       distance: 0.3,
                       tags: ["Study, CSE"],
-                      colour: "#3E00FF"
+                      colour: "#68d391",
+                      attendees: ["Adam Smith"]
                     },
                     {
                       name: "Elton John Concert",
@@ -136,7 +141,8 @@ const Home = (props: Props) => {
                       radius: 60,
                       distance: 0.6,
                       tags: ["Concert", "Music"],
-                      colour: "#68d391"
+                      colour: "#68d391",
+                      attendees: ["Ross Lopez"]
                     },
                   ]}
                   visible={mapVisible}
