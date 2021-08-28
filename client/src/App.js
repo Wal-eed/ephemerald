@@ -1,6 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
 import io from "socket.io-client";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+} from "react-router-dom";
+import { Homepage, Chat, Messages, Memorabilia, People, QA } from './pages';
 
 // connect to the server
 const socket = io(`http://${window.location.hostname}:8080`);
@@ -26,20 +33,29 @@ socket.emit("myEventName"/*, a, b, ...*/);
 function App() {
 	return (
 		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-			</header>
+
+			<Router>
+				<Switch>
+					<Route path="/" exact>
+						<Homepage />
+					</Route>
+					<Route path="/chat">
+						<Chat />
+					</Route>
+					<Route path="/memorabilia">
+						<Memorabilia />
+					</Route>
+					<Route path="/messages">
+						<Messages />
+					</Route>
+					<Route path="/people">
+						<People />
+					</Route>
+					<Route path="/qa">
+						<QA />
+					</Route>
+				</Switch>
+			</Router>
 		</div>
 	);
 }
