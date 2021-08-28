@@ -29,7 +29,7 @@ const Home = ({ showSplash, selectedTab = 0 }) => {
       attendance: 72,
       location: [-33.917, 151.231],
       radius: 7,
-      distance: 0.0,
+      distance: 0.1,
       tags: ["Academic", "Environmental", "Networking"],
       colour: "#68d391",
       attendees: ["Isabella Lee", "Devansh Singh", "Lizzie James", "Sam Drinkwater"]
