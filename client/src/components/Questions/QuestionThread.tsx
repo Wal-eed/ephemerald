@@ -4,7 +4,7 @@ import React from "react";
 import jas from "../../assets/jas.png";
 import elon from "../../assets/elon.png";
 
-interface Props {}
+interface Props { }
 
 const QuestionThread: React.FC<Props> = () => {
     return (
@@ -20,12 +20,12 @@ const QuestionThread: React.FC<Props> = () => {
                 name="AVATAR"
                 size="lg"
                 src={jas}
-                // style={{
-                //     position: "absolute",
-                //     left: "4%",
-                //     top: "50%",
-                //     transform: "translateY(-50%)",
-                // }}
+            // style={{
+            //     position: "absolute",
+            //     left: "4%",
+            //     top: "50%",
+            //     transform: "translateY(-50%)",
+            // }}
             />
             <Box
                 style={{
