@@ -24,11 +24,15 @@ const QuestionResponse: React.FC<Props> = ({ response }) => {
         >
             <HStack>
                 {/* Responder profile */}
-                <Box style={{ marginLeft: 10, marginRight: 10, width: "80px" }}>
+                <Box style={{ marginLeft: 10, marginRight: 10, width: "100px" }}>
                     <Avatar
                         name="Avatar"
                         src={response.avatar}
                         size="md"
+                        style={{
+                            display: 'bllock',
+                            margin: '0 auto'
+                        }}
                     ></Avatar>
                     <span
                         style={{

@@ -14,6 +14,8 @@ import elon from "src/assets/elon.png";
 import jas from "src/assets/jas.png";
 import { motion } from "framer-motion";
 import Paginator from "src/components/Paginator/Paginator";
+import Card from "src/components/Card/Card";
+import { Text } from "@chakra-ui/react"
 
 export interface Response {
     name: string;
@@ -28,6 +30,11 @@ export interface Question {
     authorName: string;
     authorAvatar: string;
     responses: Response[];
+}
+
+interface Poll {
+    question: string;
+    choices: string[];
 }
 
 interface Props {}
@@ -74,10 +81,24 @@ const QA: React.FC<Props> = () => {
                 {
                     name: "Elon Musk",
                     avatar: elon,
-                    votes: -100,
+                    votes: -5,
                     response: "No",
                 },
             ],
+        },
+    ]);
+    const [polls, setPolls] = useState<Poll[]>([
+        {
+            question: "What should Elton John play next?",
+            choices: [
+                "Rocket Man",
+                "Don't Go Breaking My Heart",
+                "I'm Still Standing",
+            ],
+        },
+        {
+            question: "Another question",
+            choices: ["Option 1", "Option 2"],
         },
     ]);
 
@@ -103,7 +124,37 @@ const QA: React.FC<Props> = () => {
                 <br />
 
                 <VStack
-                    // divider={<StackDivider borderColor="gray.200" />}
+                    spacing={4}
+                    align="stretch"
+                >
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{
+                            duration: 1.5,
+                        }}
+                        style={{
+                            width: "100%",
+                            display: "block",
+                            margin: "0 auto",
+                        }}
+                    >
+                        {polls.map(poll => (
+                            <>
+                                <Card>
+                                    <div style={{ textAlign: 'center' }}>
+                                        <Text fontSize="3xl">{poll.question}</Text>
+                                    </div>
+                                    <ChatPoll question={""} choices={poll.choices} />
+                                </Card>
+                                <br />
+                            </>
+                        ))}
+                    </motion.div>
+                </VStack>
+                <hr />
+                <br />
+                <VStack
                     spacing={4}
                     align="stretch"
                 >
@@ -132,7 +183,7 @@ const QA: React.FC<Props> = () => {
                 <br />
                 <br />
             </Container>
-            <Paginator />
+            {/* <Paginator /> */}
         </>
     );
 };
