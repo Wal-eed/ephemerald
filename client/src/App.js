@@ -4,7 +4,9 @@ import {
 } from "react-router-dom";
 import io from "socket.io-client";
 import "./App.css";
-import { Homepage, Memorabilia, Messages, People, QA, Poll, Map } from './pages';
+import { Chat, Map, Homepage, Memorabilia, Messages, People, QA, Poll } from './pages';
+import logo from 'src/assets/logo.png';
+import { Helmet } from "react-helmet";
 
 // connect to the server
 const socket = io(`http://${window.location.hostname}:8080`);
