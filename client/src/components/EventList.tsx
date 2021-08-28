@@ -25,7 +25,31 @@ import { Link } from "react-router-dom";
 import user1 from "../assets/user1.png";
 import user6 from "../assets/user6.png";
 
-const Search = () => {
+const sortEventList = (events, sortMethod) => {
+  let tempEventList = events;
+  tempEventList.sort((first, second) => {
+    if (sortMethod === "near me") {
+      return first.distance - second.distance;
+    } else if (sortMethod === "hot") {
+      return second.attendance - first.attendance;
+    }
+    return 0;
+  });
+  return tempEventList;
+};
+
+const Search = ({ allEvents, setDisplayedEvents, sortMethod }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const sortedAllEvents = sortEventList(allEvents, sortMethod);
+  const change_query = (event) => {
+    const val = event.target.value;
+    setSearchQuery(val);
+    const filteredEvents = sortedAllEvents.filter((e) => {
+      return e.name.includes(val);
+    });
+    setDisplayedEvents(filteredEvents);
+  };
+
   return (
     <Stack spacing={4}>
       <InputGroup>
@@ -38,6 +62,8 @@ const Search = () => {
           placeholder=""
           borderRadius="20px"
           borderColor="#68d391"
+          value={searchQuery}
+          onChange={change_query}
         />
       </InputGroup>
     </Stack>
@@ -46,43 +72,24 @@ const Search = () => {
 
 const EventList = ({ events }) => {
   const [DisplayedEvents, setDisplayedEvents] = useState(events);
-  console.log("Loading event list page");
-
-  useEffect(() => {
-    console.log(DisplayedEvents);
-  }, [DisplayedEvents]);
-
   const [selected, setSelected] = useState("near me");
 
-  const changeChatList = (val: string) => {
-    let tempChatList = DisplayedEvents;
-    tempChatList.sort((first, second) => {
-      console.log(val);
-      if (val === "near me") {
-        console.log(first.distance);
-        return first.distance - second.distance;
-      } else if (val === "hot") {
-        console.log(first.attendance);
-        return second.attendance - first.attendance;
-      }
-      return 0;
-    });
-    console.log(tempChatList);
-
-    setDisplayedEvents(tempChatList);
+  const changeEventList = (val: string) => {
+    const newEventList = sortEventList(DisplayedEvents, val);
+    setDisplayedEvents(newEventList);
   };
 
   const change_select = (event) => {
     const val = event.target.value;
     setSelected(val);
-    changeChatList(val);
+    changeEventList(val);
   };
 
   return (
     <div>
       <Grid gap={5}>
         <GridItem colStart={1} colEnd={2}>
-          <Search />
+          <Search allEvents={events} setDisplayedEvents={setDisplayedEvents} sortMethod={selected} />
         </GridItem>
         <GridItem colStart={3} colEnd={3}>
           <Select borderColor="white" value={selected} onChange={change_select}>
@@ -108,6 +115,7 @@ const EventList = ({ events }) => {
     </div>
   );
 };
+
 const EventCard = ({ name, distance, attendance, tags, colour }) => {
   return (
     <Box
