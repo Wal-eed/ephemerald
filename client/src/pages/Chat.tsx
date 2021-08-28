@@ -2,7 +2,16 @@ import { Box, HStack, VStack } from "@chakra-ui/layout";
 import { typography } from "@chakra-ui/styled-system";
 import React from "react";
 import ChatHeader from "../components/ChatHeader";
-import { Heading, Text } from "@chakra-ui/react";
+import {
+  Container,
+  Heading,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from "@chakra-ui/react";
 
 interface Props {}
 
@@ -37,13 +46,32 @@ const Chat = (props: Props) => {
   return (
     <>
       <ChatHeader></ChatHeader>
-      {ChatList.map((chat) => (
-        <Card>
-          <Text>{chat.heading}</Text>
-          <Text>{chat.distance} km away</Text>
-          <Text>{chat.numPeople} people</Text>
-        </Card>
-      ))}
+      <Tabs isFitted variant="enclosed">
+        <TabList mb="1em">
+          <Tab>Events</Tab>
+          <Tab>Map</Tab>
+          <Tab>Directs</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <Container>
+              {ChatList.map((chat) => (
+                <Card>
+                  <Text>{chat.heading}</Text>
+                  <Text>{chat.distance} km away</Text>
+                  <Text>{chat.numPeople} people</Text>
+                </Card>
+              ))}
+            </Container>
+          </TabPanel>
+          <TabPanel>
+            <p>Map</p>
+          </TabPanel>
+          <TabPanel>
+            <p>Direct</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </>
   );
 };
