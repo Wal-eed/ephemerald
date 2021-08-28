@@ -21,7 +21,7 @@ const MessageInput: React.FC<IProps> = ({ channel, onEnterPressed }) => {
             const time = new Date(Date.now());
             onEnterPressed({
               text: value,
-              name: "Test User",
+              name: "Anonymous Bandicoot",
               time: time.toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",

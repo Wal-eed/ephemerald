@@ -8,7 +8,7 @@ import { HStack } from "@chakra-ui/layout";
 interface Props {}
 
 const DirectMessagesList: React.FC<Props> = () => {
-  const [showConv, setShowConv] = useState(true);
+  const [showConv, setShowConv] = useState(window.location.hash);
   return showConv ? (
     <DirectMessages backToMessages={() => setShowConv(false)} />
   ) : (

@@ -48,10 +48,18 @@ const Messages: React.FC<IProps> = () => {
     },
   ]);
   const [activeChannel, setActiveChannel] = useState(channels[0].name);
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [messages, setMessages] = useState([]);
   const [joined, setJoined] = useState(false);
 
-  const handleMessageSend = (value) => setMessages([...messages, value]);
+  const handleMessageSend = (value) => {
+    window.socket.emit("message", value);
+    value.name = "You";
+    setMessages([...messages, value]);
+  };
+
+  window.socket.on("message", (value) => {
+    setMessages([...messages, value]);
+  })
 
   return (
     <VStack h="100vh" w="100%">

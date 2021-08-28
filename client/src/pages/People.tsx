@@ -409,7 +409,7 @@ const ProfileDisplay = ({
                 alignContent="center"
                 justifyContent="center"
               >
-                <Link to="/home/messages">
+                <Link to="/home/messages#open">
                   <IconButton
                     class="iconButton"
                     colorScheme="whiteAlpha"

@@ -1,6 +1,7 @@
 html, body, #root {
 	width: 100%;
 	height: 100%;
+	overflow-x: hidden;
 }
 
 * {
@@ -12,6 +13,10 @@ html, body, #root {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 *:focus {

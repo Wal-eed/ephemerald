@@ -22,19 +22,9 @@ class User {
 			console.log(`User ${this.id} disconnected`);
 		});
 
-		// listen for data from a client
-		this.socket.on("myEventName", (/*a, b, ...*/) => {
-			// ...
+		this.socket.on("message", (value) => {
+			this.socket.broadcast.emit("message", value);
 		});
-
-		// send data to a client
-		this.socket.emit("myEventName"/*, a, b, ...*/);
-
-		// send data to everyone
-		io.emit("myEventName"/*, a, b, ...*/);
-
-		// more ways to send stuff (rooms, broadcasts, etc):
-		// https://socket.io/docs/v3/emit-cheatsheet/index.html
 	}
 }
 
