@@ -137,7 +137,11 @@ const EventList = ({ events }) => {
     <div>
       <Grid gap={5}>
         <GridItem colStart={1} colEnd={2}>
-          <Search allEvents={events} setDisplayedEvents={setDisplayedEvents} sortMethod={selected} />
+          <Search
+            allEvents={events}
+            setDisplayedEvents={setDisplayedEvents}
+            sortMethod={selected}
+          />
         </GridItem>
         <GridItem colStart={3} colEnd={3}>
           <Select borderColor="white" value={selected} onChange={change_select}>

@@ -8,7 +8,7 @@ import {
   Box,
   IconButton,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Message } from "src/components/Message";
 import MessageInput from "src/components/MessageInput";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
