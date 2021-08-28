@@ -112,15 +112,13 @@ const QA: React.FC<Props> = () => {
     <Box style={{ padding: 10 }}>
       <motion.div
         initial={{
-          scale: 0.5,
           opacity: 0,
         }}
         animate={{
-          scale: 1,
           opacity: 1,
         }}
         transition={{
-          duration: 1,
+          duration: 0.5,
         }}
       >
         <AskQuestion postQuestion={postQuestion} />
@@ -130,11 +128,9 @@ const QA: React.FC<Props> = () => {
         {questions.map((question, i) => (
           <motion.div
             initial={{
-              x: -1000,
               opacity: 0,
             }}
             animate={{
-              x: 0,
               opacity: 1,
             }}
             transition={{

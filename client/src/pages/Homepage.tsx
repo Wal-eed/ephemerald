@@ -9,24 +9,28 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FaCommentAlt, FaMapMarked } from "react-icons/fa";
+import { AiFillMessage } from "react-icons/ai";
 import Card from "src/components/Card/Card";
 import EventList from "src/components/EventList";
 import { Event } from "src/interfaces/Event";
 import ChatHeader from "../components/ChatHeader";
 import Map from "./Map";
 import SplashScreen from "src/components/SplashScreen/SplashScreen";
+import DirectMessages from "src/pages/DirectMessages";
+import DirectMessagesList from "src/pages/DirectMessagesList";
 
-const Home = ({ showSplash }) => {
+const Home = ({ showSplash, selectedTab = 0 }) => {
   const [mapVisible, setMapVisible] = React.useState<boolean>(false);
+  const [tab, setTab] = React.useState(selectedTab);
 
   const events: Event[] = [
     {
-      name: "1511 Lecture Group Chat",
+      name: "SYNCS BBQ",
       attendance: 10,
       location: [-33.918, 151.231],
       radius: 5,
       distance: 0.3,
-      tags: ["Study", "CSE"],
+      tags: ["CSE", "Fun", "Study"],
       colour: "#68d391",
     },
     {
@@ -39,21 +43,12 @@ const Home = ({ showSplash }) => {
       colour: "#68d391",
     },
     {
-      name: "Dan's Pub - Happy Hour",
+      name: "Climate Change Conference",
       attendance: 72,
       location: [-33.917, 151.231],
       radius: 7,
       distance: 0.8,
-      tags: ["Pub", "Drinks", "Happy Hour"],
-      colour: "#68d391",
-    },
-    {
-      name: "Friendly Soccer",
-      attendance: 8,
-      location: [-33.917, 151.231],
-      radius: 7,
-      distance: 1.0,
-      tags: ["Soccer"],
+      tags: ["Academic", "Environmental", "Networking"],
       colour: "#68d391",
     },
   ];
@@ -81,6 +76,7 @@ const Home = ({ showSplash }) => {
           variant="soft-rounded"
           colorScheme="green"
           onChange={(index) => setMapVisible(index === 1)}
+          defaultIndex={tab}
           style={{
             height: "calc(100% - 70px)",
           }}
@@ -101,7 +97,7 @@ const Home = ({ showSplash }) => {
               <Text>Map</Text>
             </Tab>
             <Tab>
-              <Icon as={FaMapMarked} style={{ marginRight: "0.5rem" }} />
+              <Icon as={AiFillMessage} style={{ marginRight: "0.5rem" }} />
               <Text>Messages</Text>
             </Tab>
           </TabList>
@@ -146,7 +142,16 @@ const Home = ({ showSplash }) => {
                 />
               </div>
             </TabPanel>
-            <TabPanel>MESSAGES HERE</TabPanel>
+            <TabPanel>
+              <div
+                style={{
+                  width: "100%",
+                  height: "calc(100vh - 70px - 90px)",
+                }}
+              >
+                <DirectMessagesList />
+              </div>
+            </TabPanel>
           </TabPanels>
         </Tabs>
       </div>
