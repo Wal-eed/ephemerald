@@ -56,7 +56,7 @@ const Home = ({ showSplash, selectedTab = 0 }) => {
       ],
     },
     {
-      name: "Elton John Concert",
+      name: "Coachella 2022",
       attendance: 119,
       location: [-33.916, 151.231],
       radius: 80,
@@ -112,15 +112,15 @@ const Home = ({ showSplash, selectedTab = 0 }) => {
               height: "50px",
             }}
           >
-            <Tab>
+            <Tab style={{position: "relative", top: -1}}>
               <Icon as={FaCommentAlt} style={{ marginRight: "0.5rem" }} />
               <Text>Events</Text>
             </Tab>
-            <Tab>
+            <Tab style={{position: "relative", top: -1}}>
               <Icon as={FaMapMarked} style={{ marginRight: "0.5rem" }} />
               <Text>Map</Text>
             </Tab>
-            <Tab>
+            <Tab style={{position: "relative", top: -1}}>
               <Icon as={AiFillMessage} style={{ marginRight: "0.5rem" }} />
               <Text>Messages</Text>
             </Tab>
