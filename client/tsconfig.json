@@ -24,7 +24,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "**/*.png",
+    "**/*.png", "src/pages/Homepage.jsx",
   ],
   "exclude": [
     "node_modules"

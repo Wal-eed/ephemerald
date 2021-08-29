@@ -69,7 +69,7 @@ export default function WfWf(props) {
           mx="auto"
           style={{ position: "relative", top: "-9px" }}
         >
-          <Link display="flex" alignItems="center" href="/home">
+          <Link display="flex" alignItems="center" style={{textDecoration: "none"}}>
             <img style={{ width: "40px" }} src={logo} />
             <Text style={{ color: "white", fontWeight: "bold" }}>
               EPHEMERALD

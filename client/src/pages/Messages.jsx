@@ -8,7 +8,7 @@ import {
   Box,
   IconButton,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Message } from "src/components/Message";
 import MessageInput from "src/components/MessageInput";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
@@ -28,7 +28,31 @@ export interface IMessage {
   name: string;
 }
 
+const mockMessages: IMessage[] = [
+  {
+    text: "Wow this is so cool!",
+    time: "3:13 AM",
+    name: "Tim Apple",
+  },
+  {
+    text: "Looking forward to this event.",
+    time: "6:50 AM",
+    name: "Joanne Van de Huis",
+  },
+  {
+    text: "When is the event starting?",
+    time: "10:11 AM",
+    name: "Joey Joeson",
+  },
+  {
+    text: "I'm stuff.",
+    time: "4:20 PM",
+    name: "Robert Downey Jr.",
+  },
+];
+
 const Messages: React.FC<IProps> = () => {
+  const shuffled = mockMessages.sort(() => 0.5 - Math.random());
   const [channels, setChannels] = useState([
     {
       name: "Chat",
@@ -48,10 +72,22 @@ const Messages: React.FC<IProps> = () => {
     },
   ]);
   const [activeChannel, setActiveChannel] = useState(channels[0].name);
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [messages, setMessages] = useState([]);
   const [joined, setJoined] = useState(false);
 
-  const handleMessageSend = (value) => setMessages([...messages, value]);
+  const handleMessageSend = (value) => {
+    window.socket.emit("message", value);
+    value.name = "You";
+    setMessages([...messages, value]);
+  };
+
+  window.socket.on("message", (value) => {
+    setMessages([...messages, value]);
+  })
+
+  useEffect(() => {
+    setMessages(shuffled.slice(0, 2));
+  }, [shuffled]);
 
   return (
     <VStack h="100vh" w="100%">
@@ -80,7 +116,7 @@ const Messages: React.FC<IProps> = () => {
           <HStack
             style={{
               background:
-                activeChannel === channel.name ? "#2bc253" : "#dddddd",
+                activeChannel === channel.name ? "#68d391" : "#dddddd",
               color: activeChannel === channel.name && "white",
               transform: activeChannel === channel.name && "scale(1.1)",
               transition: "0.25s all ease-in-out",
@@ -140,7 +176,7 @@ const Messages: React.FC<IProps> = () => {
           </VStack>
           <Flex p="1rem" justifyContent="center" alignItems="center">
             {!joined ? (
-              <Button onClick={() => setJoined(true)}>Join room</Button>
+              <Button onClick={() => setJoined(true)} style={{width: "100%", background: "#68d391", color: "white"}}>Join room</Button>
             ) : (
               <MessageInput
                 channel={activeChannel}
