@@ -1,11 +1,14 @@
 # Ephemerald
 
 An ephemeral social networking app to bring the best of online events to in-person events!
+![Untitled-1](https://user-images.githubusercontent.com/77413499/134784171-1f65f28a-2a34-4ae4-8575-143c529b197a.png)
 
-# Demo
 Take a look at the devpost submission here: https://devpost.com/software/ephemerald for more details.
+ 
 
-## Installing
+
+## Installing!
+
 
 From the project directory:
 
