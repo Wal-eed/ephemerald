@@ -2,6 +2,9 @@
 
 An ephemeral social networking app to bring the best of online events to in-person events!
 
+# Demo
+Take a look at the devpost submission here: https://devpost.com/software/ephemerald for more details.
+
 ## Installing
 
 From the project directory:
